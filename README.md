@@ -22,11 +22,17 @@ YAIR provides a What-You-See-Is-What-You-Get reply box; no more writing markdown
 
 ![editor](promotional/editor.PNG)
 
-## Is this safe?
+## F.A.Q.
+
+### Is this safe?
 
 Absolutely! YAIR operates on a copy of your messages; the only thing it can do to your original messages is mark them as read.
 
-Everything is also completely local; as long as you can trust your browsers cookies, you can trust YAIR. Nothing is synced to "the cloud". 
+Everything is also completely local; as long as you can trust your browsers cookies, you can trust YAIR. Nothing is synced to "the cloud".
+
+### I already use RIR. Why would I want to use YAIR instead?
+
+If you're happy with RIR, there's absolutely no reason to! YAIR originally began life as a couple of quick hacks to RIR to address some personal frustrations with the user interface. As time went on, the modifications got to the point that it made sense to publish my code as a seperate extension.
 
 ## Credits
 YAIR is built on top of [Goctionni's Reddit Inbox Revamp](https://github.com/Goctionni/RedditInboxRevamp).
