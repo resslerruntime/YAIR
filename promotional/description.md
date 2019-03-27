@@ -1,1 +1,0 @@
-Promo Images live here
