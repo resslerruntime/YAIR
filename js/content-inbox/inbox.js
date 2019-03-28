@@ -214,7 +214,7 @@
 			var link = document.createElement('link');
 			link.type = 'image/png';
 			link.rel = 'shortcut icon';
-			link.href = chrome.extension.getURL('Icons/' + icon);
+			link.href = chrome.extension.getURL('images/icons/' + icon);
 			document.querySelector('head').appendChild(link);
 		}
 		, update: function () {
