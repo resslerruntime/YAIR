@@ -676,6 +676,7 @@
 				}				
 				if (!yair.cfg.deleted.contains(id)) {
 					yair.cfg.deleted.add(id);
+					conversation.closest(".yair-message-row").find('.styled-checkbox').prop("checked", false);
 					if (yair.show !== "archived" || yair.show !== "modarchived") {
 						conversation.closest('.yair-message-row').slideUp(function () {
 							conversation.closest('.yair-message-row').remove();
@@ -687,6 +688,9 @@
 					// Go to inbox
 					history.pushState({}, yair.cfg.data.pageTitle, '/message/yair_inbox');
 					yair.view.update();
+				}
+				if(!$('.yair-main-panel .styled-checkbox').is(":checked")) {
+					$(".yair-sidebar-options").addClass("yair-hide");
 				}
 			}
 			, bulkDelete: function () {
@@ -726,11 +730,15 @@
 				}
 				if (yair.cfg.deleted.contains(id)) {
 					yair.cfg.deleted.remove(id);
+					conversation.closest(".yair-message-row").find('.styled-checkbox').prop("checked", false);
 					if (yair.show === "archived" || yair.show === "modarchived") {
 						conversation.closest('.yair-message-row').slideUp(function () {
 							conversation.closest('.yair-message-row').remove();
 						});
 					}
+				}
+				if(!$('.yair-main-panel .styled-checkbox').is(":checked")) {
+					$(".yair-sidebar-options").addClass("yair-hide");
 				}
 				yair.view.showNotification('Restored');
 				if (yair.show === "conversation") {
