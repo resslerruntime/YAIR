@@ -32,7 +32,7 @@
 					toolbar: [
 						["bold", "italic", "strike"],
 						[{ 'list' : 'bullet' }, { 'list' : 'ordered' }],
-						["link", "code-block"]
+						["link"]
 					]
 				},
 				placeholder: "Message Response...",
