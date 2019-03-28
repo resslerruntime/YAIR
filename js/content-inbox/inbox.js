@@ -355,7 +355,7 @@
 			if (yair._get.search) {
 				yair.$e.search.val(decodeURIComponent(yair._get.search));
 			}
-			if ( !$("#new_modmail").length  || !$("modmail").length) {
+			if ( !$("#new_modmail").length && !$("#modmail").length) {
 				$(".yair-modmail").css("display","none");
 			}
 		}
@@ -457,7 +457,7 @@
 				yair.$e.body.removeClass('yair-modal-open');
 			});
 			
-			if ( !$("#new_modmail").length || !$("modmail").length ) {
+			if ( !$("#new_modmail").length && !$("#modmail").length ) {
 				$("#ModMail-config").css("display","none");
 			}
 			
