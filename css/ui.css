@@ -826,14 +826,28 @@
     text-align: right;
     border-top: 1px solid #EFEFED;
     padding-top: 8px; }
-  .yair-config button.yair-save-button {
-    margin-right: 8px;
+  .yair-config button.yair-save-button,
+  .yair-config #YAIRResetInbox,
+  .yair-config #YAIRResetInboxToggle,
+  .yair-config #YAIRCancelResetInbox {
     background-color: #0DD3BB;
     border: unset;
     padding: 5px;
     color: #FFFFFF;
     border-radius: 2px;
     width: 100px; }
+  .yair-config button.yair-save-button {
+    margin-right: 8px; }
+  .yair-config button#YAIRResetInboxToggle {
+    margin-bottom: 10px; }
+  .yair-config #YAIRConfirmReset {
+    margin: auto;
+    width: 260px;
+    padding: 50px; }
+    .yair-config #YAIRConfirmReset > p {
+      margin-bottom: 10px; }
+    .yair-config #YAIRConfirmReset button#YAIRCancelResetInbox {
+      margin-left: 55px; }
 
 /*****************
 * EDITOR OPTIONS *

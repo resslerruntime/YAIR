@@ -401,9 +401,15 @@
 				contentTabs[name].addClass('yair-active-tab');
 			});
 			// Buttons
+			$config.find('#YAIRResetInboxToggle').on('click', function () {
+				$config.find('#YAIRConfirmReset').removeClass('yair-hide');
+			});
 			$config.find('#YAIRResetInbox').on('click', function () {
 				yair.$e.overlay.empty().off();
 				yair.controller.resetInbox();
+			});
+			$config.find('#YAIRCancelResetInbox').on('click', function () {
+				$config.find('#YAIRConfirmReset').addClass('yair-hide');
 			});
 			// Set checkbox-states
 			var $showModMail = $config.find('#YAIRShowModMail');

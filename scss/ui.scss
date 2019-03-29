@@ -990,8 +990,10 @@
 		border-top: 1px solid $border;
 		padding-top: 8px;
 	}
-	button.yair-save-button {
-		margin-right: 8px;
+	button.yair-save-button,
+	#YAIRResetInbox,
+	#YAIRResetInboxToggle,
+	#YAIRCancelResetInbox {
 		background-color: $link;
 		border: unset;
 		padding: 5px;
@@ -999,6 +1001,24 @@
 		border-radius: 2px;
 		width: 100px;
 	}
+	button.yair-save-button {
+		margin-right: 8px;
+	}
+	button#YAIRResetInboxToggle {
+		margin-bottom: 10px;
+	}
+	#YAIRConfirmReset {
+		margin: auto;
+		width: 260px;
+		padding: 50px;
+		> p {
+			margin-bottom: 10px;
+		}
+		button#YAIRCancelResetInbox {
+			margin-left: 55px;
+		}
+	}
+
 }
 
 /*****************
