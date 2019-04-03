@@ -48,7 +48,7 @@
 			quill.on("text-change", function (delta, source) {
 				var html = quill.container.firstChild.innerHTML;
 				var markdown = turndownService.turndown(html);
-				$("#markdown").text(markdown);
+				$("#markdown").val(markdown);
 			});
 			
 			var $visInput = $conversation.find('.ql-editor');
