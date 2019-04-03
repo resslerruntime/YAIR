@@ -185,6 +185,14 @@
 			if (yair.cfg.data.showModmail) {
 				$(".yair-modmail").removeClass("yair-hide");
 			}
+			
+			yair.model.updateDb(function () {
+				yair.view.update();
+				yair.view.setFavicon();
+			}, function (errorMessage) {
+				yair.view.showNotification(errorMessage, -1);
+				console.error("DB has NOT been updated", arguments);
+			});
 		}
 		, showInbox: function (conversations, hideOverlay) {
 			if (typeof hideOverlay !== "boolean") hideOverlay = true;
