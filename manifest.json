@@ -77,7 +77,7 @@
 		"js/background/bg-proxy.js",
 		"js/content-inbox/jquery.min.js",
 		"js/notifications/moment-2.24.0.min.js",
-		"js/notifications/bg_fetch.js"
+		"js/background/bg_fetch.js"
 		]
 	},
 	"browser_action":{
