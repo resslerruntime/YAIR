@@ -50,6 +50,7 @@
 			window.addEventListener("neverEndingLoad", neverEndingPageload);
 		}
 		, initHtml: function () {
+			if (!document.querySelector('#NREMail')) { return }
 			var ori_mail = document.querySelector('#NREMail');
 			var parent_li = ori_mail.parentElement;
 			parent_li.style.display = 'none';
@@ -131,6 +132,7 @@
 		createSeparator: function () {
 			var ele = document.createElement('span');
 			ele.classList.add('separator');
+			ele.classList.add('BlueBar__accountDivider');
 			ele.innerText = '|';
 			return ele;
 		}
@@ -235,6 +237,9 @@
 
 	function initDefaultDOMChanges() {
 		var ori_mail = document.querySelector('#mail');
+		if (ori_mail === null) {
+			var ori_mail = document.querySelector('.icon-message');
+		}
 		var new_pm = document.createElement('a');
 		new_pm.classList.add('yair-privatemessages');
 		new_pm.setAttribute('href', '/message/yair_inbox');
@@ -243,9 +248,10 @@
 		new_reply.classList.add('yair-mail');
 		new_reply.setAttribute('href', '/message/inbox/');
 		var new_reply_count = HelpFuncs.createMessageCount('/message/inbox');
-		if(ori_mail !== null){
-			referenceElement(ori_mail.previousSibling).insertAfter(new_pm).insertAfter(new_pm_count)
-				.insertAfter(HelpFuncs.createSeparator()).insertAfter(new_reply).insertAfter(new_reply_count);
+		if (ori_mail !== null) {
+		referenceElement(ori_mail.previousSibling).insertAfter(new_pm).insertAfter(new_pm_count)
+			.insertAfter(HelpFuncs.createSeparator()).insertAfter(new_reply).insertAfter(new_reply_count);
+			ori_mail.style.display = "none";
 		}
 		elements.defaultInboxIcons.push(new_reply);
 		elements.defaultInboxCounts.push(new_reply_count);
