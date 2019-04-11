@@ -173,11 +173,6 @@
 			}
 			
 			yair.model.updateDb(yair.view.updateBodyClass, yair.view.showNotification);
-			// Hide overlay
-			//yair.view.hideOverlay();
-			// Update the body class to conversation
-			//yair.view.updateBodyClass();
-			// Set conversation status: read
 			yair.model.setConversationStatus(conversation, true);
 			
 			$('.icon-archive').on('click', yair.controller.action.bulkDelete);
