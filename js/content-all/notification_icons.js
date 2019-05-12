@@ -244,13 +244,14 @@
 		new_pm.classList.add('yair-privatemessages');
 		new_pm.setAttribute('href', '/message/yair_inbox');
 		var new_pm_count = HelpFuncs.createMessageCount('/message/yair_inbox');
+		console.log(new_pm_count);
 		var new_reply = document.createElement('a');
 		new_reply.classList.add('yair-mail');
 		new_reply.setAttribute('href', '/message/inbox/');
 		var new_reply_count = HelpFuncs.createMessageCount('/message/inbox');
 		if (ori_mail !== null) {
-		referenceElement(ori_mail.previousSibling).insertAfter(new_pm).insertAfter(new_pm_count)
-			.insertAfter(HelpFuncs.createSeparator()).insertAfter(new_reply).insertAfter(new_reply_count);
+			referenceElement(ori_mail.previousSibling).insertAfter(new_pm).insertAfter(new_pm_count)
+				.insertAfter(HelpFuncs.createSeparator()).insertAfter(new_reply).insertAfter(new_reply_count);
 			ori_mail.style.display = "none";
 		}
 		elements.defaultInboxIcons.push(new_reply);
@@ -258,17 +259,40 @@
 		elements.yairInboxIcons.push(new_pm);
 		elements.yairInboxCounts.push(new_pm_count);
 	}
+		
 	function initDefaultDOMChangesForNewReddit() {
 		var ori_mail = document.querySelector('#HeaderUserActions--Messages');
 		var new_pm = document.createElement('a');
 		new_pm.classList.add('yair-privatemessages-newredit');
 		new_pm.setAttribute('href', 'https://old.reddit.com/message/yair_inbox');
-		var new_pm_count = HelpFuncs.createMessageCount('https://old.reddit.com/message/yair_inbox');
-		if (ori_mail !== null) {
-		referenceElement(ori_mail.previousSibling).insertAfter(new_pm);
+		var new_pm_count = document.createElement('span');
+		new_pm_count.classList.add('count_badge');
+		var new_pm_holder = document.createElement('span');
+		new_pm_holder.setAttribute('id', 'HeaderUserActions--YAIR');
+		new_pm_holder.appendChild(new_pm);
+		new_pm.appendChild(new_pm_count);
+		
+		const request = async () => {
+			var new_pm_count_num = 0;
+			const response = await fetch('https://www.reddit.com/message/unread.json');
+			const json = await response.json();
+			var messages = json.data.children;
+			for (var i = 0; i < Object.keys(messages).length; i++) {
+				if (messages[i].kind === "t4") { new_pm_count_num++; }
+			}
+			if (new_pm_count_num > 0) {
+				new_pm.classList.remove('yair-privatemessages-newredit');
+				new_pm.classList.add('yair-privatemessages-newredit-newmail');
+				
+			}
+			new_pm_count.innerHTML = new_pm_count_num;
+			if (ori_mail !== null) {
+				referenceElement(ori_mail.previousSibling).insertAfter(new_pm_holder);
+			}
+			elements.yairInboxIcons.push(new_pm);
+			elements.yairInboxCounts.push(new_pm_count);
 		}
-		elements.yairInboxIcons.push(new_pm);
-		elements.yairInboxCounts.push(new_pm_count);
+		request();
 	}
 	
 	var initialMessageCount = 0;

@@ -20,7 +20,7 @@
 	top: 2px
 }
 
-.yair-privatemessages-newredit {
+.yair-privatemessages-newredit, .yair-privatemessages-newredit-newmail {
 	background-repeat: no-repeat;
 	width: 16px;
 	height: 16px;
@@ -30,9 +30,37 @@
 	text-decoration: none;
 	padding: 8px;
 	margin-left: 8px;
-	background-image: url("chrome-extension://__MSG_@@extension_id__/images/newReddit-icon.svg");
 	background-size: 16px;
 	background-position: center;
+}
+
+.yair-privatemessages-newredit {
+	background-image: url("chrome-extension://__MSG_@@extension_id__/images/newReddit-icon.svg");
+}
+
+.yair-privatemessages-newredit-newmail {
+	background-image: url("chrome-extension://__MSG_@@extension_id__/images/newReddit-icon-newmail.svg");
+}
+
+.count_badge {
+	font-family: "Noto Sans", Arial, sans-serif;
+    box-sizing: border-box;
+    box-shadow: rgb(255, 255, 255) 0px 0px 0px 0.5px;
+    color: rgb(255, 255, 255);
+    font-size: 8px;
+    font-weight: bold;
+    height: 12px;
+    left: 18px;
+    line-height: 12px;
+    min-width: 12px;
+    position: absolute;
+    text-align: center;
+    top: 2px;
+    vertical-align: middle;
+    z-index: 1;
+    background: rgb(255, 69, 0);
+    border-radius: 12px;
+    padding: 0px 3px;
 }
 
 .yair-mail {
