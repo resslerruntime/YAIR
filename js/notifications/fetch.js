@@ -30,9 +30,9 @@ function displayNotifications(notifications) {
 					// Private Message
 					viewModel.id = item.data.name;
 					if (!item.data.first_message_name) {
-						viewModel.url = "http://www.reddit.com/message/yair_conversation/t4_" + item.data.id;
+						viewModel.url = "http://old.reddit.com/message/yair_conversation/t4_" + item.data.id;
 					} else {
-						viewModel.url = "http://www.reddit.com/message/yair_conversation/" + item.data.first_message_name;
+						viewModel.url = "http://old.reddit.com/message/yair_conversation/" + item.data.first_message_name;
 					}
 					viewModel.title = '<span class="author">' + item.data.author + '</span> &bull; <span class="subjectLine" id="subject">' + truncate(item.data.subject, 60) + '</span>';
 					viewModel.body = truncate(item.data.body, 256);
