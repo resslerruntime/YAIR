@@ -258,10 +258,28 @@
 		elements.yairInboxIcons.push(new_pm);
 		elements.yairInboxCounts.push(new_pm_count);
 	}
+	function initDefaultDOMChangesForNewReddit() {
+		var ori_mail = document.querySelector('#HeaderUserActions--Messages');
+		var new_pm = document.createElement('a');
+		new_pm.classList.add('yair-privatemessages-newredit');
+		new_pm.setAttribute('href', 'https://old.reddit.com/message/yair_inbox');
+		var new_pm_count = HelpFuncs.createMessageCount('https://old.reddit.com/message/yair_inbox');
+		if (ori_mail !== null) {
+		referenceElement(ori_mail.previousSibling).insertAfter(new_pm);
+		}
+		elements.yairInboxIcons.push(new_pm);
+		elements.yairInboxCounts.push(new_pm_count);
+	}
+	
 	var initialMessageCount = 0;
 	document.addEventListener("DOMContentLoaded", function () {
 		var originalMessageCountElement = document.querySelector('#header .message-count');
-		initDefaultDOMChanges();
+		var newReddit = document.getElementById("2x-container");
+		if (newReddit == null) {
+			initDefaultDOMChanges();
+		} else {
+			initDefaultDOMChangesForNewReddit();
+		}
 		if (originalMessageCountElement && originalMessageCountElement.innerText) {
 			initialMessageCount = parseInt(originalMessageCountElement.innerText);
 			if (initialMessageCount > 0) HelpFuncs.checkMail();

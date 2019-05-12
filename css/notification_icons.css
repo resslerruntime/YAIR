@@ -20,6 +20,21 @@
 	top: 2px
 }
 
+.yair-privatemessages-newredit {
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+	overflow: hidden;
+	position: relative;
+	display: inline-block;
+	text-decoration: none;
+	padding: 8px;
+	margin-left: 8px;
+	background-image: url("chrome-extension://__MSG_@@extension_id__/images/newReddit-icon.svg");
+	background-size: 16px;
+	background-position: center;
+}
+
 .yair-mail {
 	background-image: url("https://www.redditstatic.com/sprite-reddit.reNnXuo8_bA.png");
 	background-position: -99px -863px;
