@@ -21,7 +21,6 @@
 }
 
 .yair-privatemessages-newredit, .yair-privatemessages-newredit-newmail {
-	background-repeat: no-repeat;
 	width: 16px;
 	height: 16px;
 	overflow: hidden;
@@ -30,22 +29,19 @@
 	text-decoration: none;
 	padding: 8px;
 	margin-left: 8px;
-	background-size: 16px;
-	background-position: center;
-}
-
-.yair-privatemessages-newredit {
-	background-image: url("chrome-extension://__MSG_@@extension_id__/images/newReddit-icon.svg");
 }
 
 .yair-privatemessages-newredit-newmail {
-	background-image: url("chrome-extension://__MSG_@@extension_id__/images/newReddit-icon-newmail.svg");
+	fill: #45ADA4; 
+}
+
+.yair-privatemessages-newreddit-night {
+	fill: #d7dadc;
 }
 
 .count_badge {
 	font-family: "Noto Sans", Arial, sans-serif;
     box-sizing: border-box;
-    box-shadow: rgb(255, 255, 255) 0px 0px 0px 0.5px;
     color: rgb(255, 255, 255);
     font-size: 8px;
     font-weight: bold;

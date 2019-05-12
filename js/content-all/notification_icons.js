@@ -261,8 +261,13 @@
 	}
 		
 	function initDefaultDOMChangesForNewReddit() {
+		var nightModeDetect = window.getComputedStyle(document.documentElement).getPropertyValue('--newCommunityTheme-body');
 		var ori_mail = document.querySelector('#HeaderUserActions--Messages');
 		var new_pm = document.createElement('a');
+		if (nightModeDetect != ' #FFFFFF') {
+			new_pm.classList.add('yair-privatemessages-newreddit-night');
+		}
+		new_pm.innerHTML = "<svg viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><path class=\"st0\" d=\"M8,0C3.58,0,0,3.58,0,8s3.58,8,8,8s8-3.58,8-8S12.42,0,8,0z M11.08,4.89L8,12.08 c-0.24,0.55-0.41,0.99-1.13,0.99c-0.75,0-1.03-0.59-1.03-0.93c0-0.36,0.11-0.6,0.35-1.15l0.69-1.56L5.11,5.2 C4.87,4.64,4.67,4.15,4.67,3.91c0-0.61,0.49-0.97,1.01-0.97c0.51,0,0.87,0.27,1.07,0.79L7.98,6.9l1.16-2.83 c0.27-0.64,0.56-1.13,1.13-1.13c0.64,0,1.07,0.41,1.07,1.05C11.33,4.29,11.19,4.65,11.08,4.89z\"/></svg>";
 		new_pm.classList.add('yair-privatemessages-newredit');
 		new_pm.setAttribute('href', 'https://old.reddit.com/message/yair_inbox');
 		var new_pm_count = document.createElement('span');
@@ -270,22 +275,34 @@
 		var new_pm_holder = document.createElement('span');
 		new_pm_holder.setAttribute('id', 'HeaderUserActions--YAIR');
 		new_pm_holder.appendChild(new_pm);
-		new_pm.appendChild(new_pm_count);
-		
 		const request = async () => {
+			var new_reply_count_num = 0
 			var new_pm_count_num = 0;
 			const response = await fetch('https://www.reddit.com/message/unread.json');
 			const json = await response.json();
 			var messages = json.data.children;
 			for (var i = 0; i < Object.keys(messages).length; i++) {
-				if (messages[i].kind === "t4") { new_pm_count_num++; }
+				if (messages[i].kind === "t4") { new_pm_count_num++; } else {new_reply_count_num++; }
 			}
 			if (new_pm_count_num > 0) {
 				new_pm.classList.remove('yair-privatemessages-newredit');
+				new_pm.classList.remove('yair-privatemessages-newreddit-night');
 				new_pm.classList.add('yair-privatemessages-newredit-newmail');
-				
+				new_pm.appendChild(new_pm_count);
 			}
 			new_pm_count.innerHTML = new_pm_count_num;
+			if (new_reply_count_num > 0) {
+				document.querySelector("#HeaderUserActions--Messages > a > span").innerHTML = new_reply_count_num;
+			} else {
+				document.querySelector("#HeaderUserActions--Messages > a > span").style.display = "none";
+			}
+			if (new_pm_count_num > 0 && new_reply_count_num == 0) {
+				if (nightModeDetect != ' #FFFFFF') {
+					document.querySelector("#HeaderUserActions--Messages > a > svg").style.fill = "rgb(215, 218, 220)";
+				} else {
+					document.querySelector("#HeaderUserActions--Messages > a > svg").style.fill = "rgb(26, 26, 27)"
+				}
+			}
 			if (ori_mail !== null) {
 				referenceElement(ori_mail.previousSibling).insertAfter(new_pm_holder);
 			}
