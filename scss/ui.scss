@@ -180,34 +180,34 @@
 *     Sidebar    * 
 *****************/
 .yair-show-inbox {
-	.icon-inbox {
+	.inbox .icon-inbox {
 		background-position: 0 -85px;
 	}
-	.yair-inbox .title {
+	.inbox .yair-inbox .title {
 		@extend %activeLink;
 	}
 }
 .yair-show-drafts {
-	.icon-drafts {
+	.inbox .icon-drafts {
 		background-position: 0 -119px;
 	}
-	.yair-drafts .title {
+	.inbox .yair-drafts .title {
 		@extend %activeLink;
 	}
 }
 .yair-show-saved {
-	.icon-saved {
+	.inbox .icon-saved {
 		background-position: 0 -187px;
 	}
-	.yair-saved .title {
+	.inbox .yair-saved .title {
 		@extend %activeLink;
 	}
 }
 .yair-show-archived {
-	.icon-archive {
+	.inbox .icon-archive {
 		background-position: 0 -153px;
 	}
-	.yair-archived .title {
+	.inbox .yair-archived .title {
 		@extend %activeLink;
 	}
 }
@@ -217,7 +217,7 @@
 	}
 	.modmail-inbox .title {
 		@extend %activeLink;
-	}
+	} 
 }
 .yair-show-moddrafts {
 	.modmail .icon-drafts {

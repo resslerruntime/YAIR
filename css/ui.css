@@ -1,4 +1,4 @@
-.yair-show-inbox .yair-inbox .title, .yair-show-drafts .yair-drafts .title, .yair-show-saved .yair-saved .title, .yair-show-archived .yair-archived .title, .yair-show-modmail .modmail-inbox .title, .yair-show-moddrafts .modmail .yair-drafts .title, .yair-show-modsaved .modmail .yair-saved .title, .yair-show-modarchived .modmail .yair-archived .title {
+.yair-show-inbox .inbox .yair-inbox .title, .yair-show-drafts .inbox .yair-drafts .title, .yair-show-saved .inbox .yair-saved .title, .yair-show-archived .inbox .yair-archived .title, .yair-show-modmail .modmail-inbox .title, .yair-show-moddrafts .modmail .yair-drafts .title, .yair-show-modsaved .modmail .yair-saved .title, .yair-show-modarchived .modmail .yair-archived .title {
   color: #0DD3BB;
   font-weight: bold; }
 
@@ -131,16 +131,16 @@
 /*****************
 *     Sidebar    * 
 *****************/
-.yair-show-inbox .icon-inbox {
+.yair-show-inbox .inbox .icon-inbox {
   background-position: 0 -85px; }
 
-.yair-show-drafts .icon-drafts {
+.yair-show-drafts .inbox .icon-drafts {
   background-position: 0 -119px; }
 
-.yair-show-saved .icon-saved {
+.yair-show-saved .inbox .icon-saved {
   background-position: 0 -187px; }
 
-.yair-show-archived .icon-archive {
+.yair-show-archived .inbox .icon-archive {
   background-position: 0 -153px; }
 
 .yair-show-modmail .icon-modmail {
