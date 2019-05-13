@@ -41,10 +41,9 @@
 
 			var turndownService = new TurndownService();
 			turndownService.addRule('bold', { filter: ['sup'], replacement: function (content) { return '^' + content; }});
-			turndownService.addRule('super', { filter: ['sup'], replacement: function (content) { return '^' + content; }});
 			turndownService.addRule('strike', { filter: ['s'], replacement: function (content) { return '~~' + content + '~~'; }});
 			turndownService.addRule('italic', { filter: ['em'], replacement: function (content) { return '*' + content + '*'; }});
-			turndownService.addRule("superscript", { filter: ["sup"], replacement: function(content) { return "^" + content.replace(/ /g, " ^"); } });
+			turndownService.addRule("superscript", { filter: ["sup"], replacement: function(content) { return "^(" + content + ')'; }});
 
 			quill.on("text-change", function (delta, source) {
 				var html = quill.container.firstChild.innerHTML;
