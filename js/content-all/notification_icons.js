@@ -244,7 +244,6 @@
 		new_pm.classList.add('yair-privatemessages');
 		new_pm.setAttribute('href', '/message/yair_inbox');
 		var new_pm_count = HelpFuncs.createMessageCount('/message/yair_inbox');
-		console.log(new_pm_count);
 		var new_reply = document.createElement('a');
 		new_reply.classList.add('yair-mail');
 		new_reply.setAttribute('href', '/message/inbox/');
