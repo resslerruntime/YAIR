@@ -30,7 +30,7 @@
 			var quill = new Quill("#editor", {
 				modules: {
 					toolbar: [
-						["bold", "italic", "strike", {'script' : 'super' }],
+						["bold", "italic", "strike"],
 						[{ 'list' : 'bullet' }, { 'list' : 'ordered' }],
 						["link"]
 					]
@@ -40,7 +40,6 @@
 			});
 
 			var turndownService = new TurndownService();
-			turndownService.addRule('bold', { filter: ['sup'], replacement: function (content) { return '^' + content; }});
 			turndownService.addRule('strike', { filter: ['s'], replacement: function (content) { return '~~' + content + '~~'; }});
 			turndownService.addRule('italic', { filter: ['em'], replacement: function (content) { return '*' + content + '*'; }});
 			turndownService.addRule("superscript", { filter: ["sup"], replacement: function(content) { return "^(" + content + ')'; }});
