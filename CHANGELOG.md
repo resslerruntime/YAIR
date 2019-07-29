@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.1
+* What should be hopefully the last I see of bug #9.
+
+## 0.2.0
+* Removed superscript from fancy editor, as it was causing issues.
+* Removed accidentally left-in debugging code
+
 ## 0.1.13
 * Bugfix for 0.1.12; color wasn't changing right with newReddit icon.
 * less hacky handling of superscript in visual editor

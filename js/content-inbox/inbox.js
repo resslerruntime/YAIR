@@ -170,7 +170,7 @@
 				});
 			}
 			
-			yair.model.updateDb(yair.view.updateBodyClass, yair.view.showNotification);
+			yair.view.updateBodyClass();
 			yair.model.setConversationStatus(conversation, true);
 			
 			$('.icon-archive').on('click', yair.controller.action.bulkDelete);

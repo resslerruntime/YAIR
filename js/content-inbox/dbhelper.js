@@ -168,6 +168,11 @@
 		});
 	};
 	yair.model.getConversation = function (name, callback) {
+		var queryParams = [db_tables.privateMessages.name, 'created_utc', true, 0, -1];
+		yair.proxy(['yair', 'db', 'get'], queryParams, function (messages) {
+			var conversations = yair.model.getConversationsFromMessages(messages);
+		});
+		
 		//first_message_name
 		var index = {
 			key: 'first_message_name'
