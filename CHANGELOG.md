@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.2
+* Fix for messages from subreddits (Starting with #) showing as from "null" in notifications, and not showing in inbox
+
 ## 0.2.1
 * What should be hopefully the last I see of bug #9.
 

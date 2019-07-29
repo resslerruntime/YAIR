@@ -6,7 +6,7 @@ var yair_default_cfg = {
 	, pageTitle: 'Reddit - YAIR'
 	, deleted: []
 	, saved: []
-	, showModmail: true
+	, showModmail: false
 	, conversationNewToOld: false
 	, compactMode: false
 	, deleteDraftAfterDays: 60

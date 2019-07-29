@@ -34,7 +34,11 @@ function displayNotifications(notifications) {
 					} else {
 						viewModel.url = "http://old.reddit.com/message/yair_conversation/" + item.data.first_message_name;
 					}
-					viewModel.title = '<span class="author">' + item.data.author + '</span> &bull; <span class="subjectLine" id="subject">' + truncate(item.data.subject, 60) + '</span>';
+					if (item.data.author != null ) {
+						viewModel.title = '<span class="author">' + item.data.author + '</span> &bull; <span class="subjectLine" id="subject">' + truncate(item.data.subject, 60) + '</span>';
+					} else {
+						viewModel.title = '<span class="author">#' + item.data.subreddit + '</span> &bull; <span class="subjectLine" id="subject">' + truncate(item.data.subject, 60) + '</span>';
+					}
 					viewModel.body = truncate(item.data.body, 256);
 					viewModel.date = moment(item.data.created_utc, 'X').fromNow();
 					notificationsHTML += getNotificationHTML(viewModel);
