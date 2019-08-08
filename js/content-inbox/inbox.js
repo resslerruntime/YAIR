@@ -720,6 +720,7 @@
 					history.pushState({}, yair.cfg.data.pageTitle, '/message/yair_inbox');
 					yair.view.update();
 				}
+				$('.styled-checkbox').prop('checked', false);
 			}
 			, restore: function (e) {
 				var conversation = $(this);
@@ -771,6 +772,7 @@
 					history.pushState({}, yair.cfg.data.pageTitle, '/message/yair_inbox');
 					yair.view.update();
 				}
+				$('.styled-checkbox').prop('checked', false);
 			}
 			, save: function () {
 				var conversations = yair.controller.action.conversations;
