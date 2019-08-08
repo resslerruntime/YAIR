@@ -139,9 +139,7 @@ $(document).ready(function () {
 				$('.forceRefresh').removeClass('spin');
 			}, 1500)
 			//causes spinner to go around a minimum of one cycle
-		updateAndDisplayNotifications(function () {
-			setTimeout();
-		});
+		updateAndDisplayNotifications();
 		setLastUpdateText(moment().format('X'));
 	});
 	setLastUpdateText(localStorage.getItem('lastUpdate'));
