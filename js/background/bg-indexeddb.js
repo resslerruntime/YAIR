@@ -134,6 +134,7 @@
 			};
 			req.onerror = function (e) {
 				console.error("Failed to update obj in DB", e, req, obj);
+				callback(false);
 			};
 		});
 	};
