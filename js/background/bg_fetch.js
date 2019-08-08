@@ -3,9 +3,10 @@ var updateNotificationsInterval = null;
 var lastNotificationCount = 0;
 var actions = {
 	updateNotifications: function (request, callback) {
+		console.log("updateNotifications Called")
 		$.ajax({
 			type: 'GET'
-			, url: 'https://www.reddit.com/message/unread.json'
+			, url: 'https://www.reddit.com/message/unread.json?raw_json=1'
 		, }).done(function (data) {
 			// Set the notifications and the current time
 			localStorage.setItem('notifications', JSON.stringify(data));
@@ -14,7 +15,10 @@ var actions = {
 			var nCount = 0;
 			var messages = data.data.children;
 			for (var i = 0; i < messages.length; i++) {
-				if (messages[i].kind === "t4") nCount++;
+				if (messages[i].kind === "t4") {
+					nCount++;
+					addToDatabase(messages[i].data.dest, messages[i]);
+				}
 			}
 			if (nCount > 0) {
 				localStorage.setItem('notificationCount', '' + nCount);
@@ -77,6 +81,38 @@ actions.initNotificationsInterval();
 function onRequest(request, sender, callback) {
 	if (actions.hasOwnProperty(request.action)) {
 		actions[request.action](request, callback);
+	}
+}
+
+function addToDatabase(username, message) {
+	if (yair_user_cfg[username].pmInboxInitialized == true) {
+		window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+		window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
+		var db;
+		var request = indexedDB.open("YAIR_Messages" + username);
+		request.onerror = function(event) {
+			console.error("Database error: " + event.target.errorCode);
+		};
+		request.onsuccess = function(event) {
+			db = event.target.result;
+			var transaction = db.transaction(["privateMessages"], "readwrite");
+			var objectStore = transaction.objectStore("privateMessages");
+			var formatted_message = [{
+				"id":message.data.id,
+				"author":message.data.author,
+				"body":message.data.body,
+				"body_html":message.data.body_html,
+				"created_utc":message.data.created_utc,
+				"dest":message.data.dest,
+				"distinguished":message.data.distinguished,
+				"first_message_name":message.data.first_message_name,
+				"name":message.data.name,
+				"new":message.data.new,
+				"subject":message.data.subject
+			}];
+			console.log(formatted_message);
+			var request = objectStore.add(formatted_message[0]);
+		};
 	}
 }
 // Wire up the listener.
