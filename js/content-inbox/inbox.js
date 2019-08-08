@@ -261,7 +261,12 @@
 			if (hasDraft) $row.addClass('yair-has-draft');
 			if (modmail) $row.addClass('yair-modmail');
 			$row.data('conversation', conversation);
-			$row.find('.yair-correspondent').html("<a href='https://www.reddit.com/user/" + correspondent + "' class='author'>" + correspondent + "</a>");
+			if (modmail == true) {
+				subreddit = correspondent.substring(1);
+				$row.find('.yair-correspondent').html("<a href='https://www.reddit.com/r/" + subreddit + "' class='author'>" + correspondent + "</a>");
+			} else {
+				$row.find('.yair-correspondent').html("<a href='https://www.reddit.com/user/" + correspondent + "' class='author'>" + correspondent + "</a>");
+			}
 			$row.find('.yair-subject').text(subject);
 			$row.find('.yair-text').text(message);
 			$row.find('.yair-datetime').text(dateString(datetime));
