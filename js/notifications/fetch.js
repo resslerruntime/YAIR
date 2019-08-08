@@ -140,7 +140,7 @@ $(document).ready(function () {
 			}, 1500)
 			//causes spinner to go around a minimum of one cycle
 		updateAndDisplayNotifications(function () {
-			setTimeout(updateAndDisplayNotifications);
+			setTimeout();
 		});
 		setLastUpdateText(moment().format('X'));
 	});
