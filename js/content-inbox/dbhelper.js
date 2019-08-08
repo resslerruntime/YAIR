@@ -102,9 +102,7 @@
 	};
 
 	function indexNexPrivateMessages(callback, fail) {
-		var queryParams = [
-      db_tables.privateMessages.name, 'created_utc', true, 0, yair.cfg.data.max403Retries
-    ];
+		var queryParams = [ db_tables.privateMessages.name, 'created_utc', true, 0, yair.cfg.data.max403Retries ];
 		yair.proxy(['yair', 'db', 'get'], queryParams, function (latestMessages) {
 			var index = 0;
 
