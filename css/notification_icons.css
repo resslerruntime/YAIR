@@ -89,6 +89,7 @@
 	top: 3px;
 	margin-right: 4px;
 	background-image: url("chrome-extension://__MSG_@@extension_id__/images/icons.png");
+	background-image: url("moz-extension://__MSG_@@extension_id__/images/icons.png");
 	background-position-x: -174px;
 	background-position-y: -1px;
 	width: 16px;
@@ -99,6 +100,7 @@
 	float: left;
 	top: 3px;
 	background-image: url("chrome-extension://__MSG_@@extension_id__/images/icons.png");
+	background-image: url("moz-extension://__MSG_@@extension_id__/images/icons.png");
 	background-position-x: -191px;
 	background-position-y: -1px;
 	width: 16px;

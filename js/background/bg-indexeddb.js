@@ -121,6 +121,7 @@
 				}
 				else {
 					console.error("Failed to add to DB", e, req, obj);
+					callback(false);
 				}
 			};
 		});

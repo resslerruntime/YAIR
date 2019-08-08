@@ -88,6 +88,7 @@ body.popup {
 	height: 17px;
 	margin: 4px;
 	background: url("chrome-extension://__MSG_@@extension_id__/images/sprites.png");
+	background: url("moz-extension://__MSG_@@extension_id__/images/sprites.png");
 }
 
 
