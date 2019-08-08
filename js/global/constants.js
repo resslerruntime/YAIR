@@ -9,18 +9,6 @@ var db_tables = {
 		, indexes: ['author', 'created_utc', 'first_message_name']
 		, "columns": ["id", "author", "body", "body_html", "new", "created_utc", "name", "dest", "subject", "first_message_name", "distinguished"]
 	}
-	, 'commentReply': {
-		name: 'commentReply'
-		, key: 'id'
-		, indexes: ['author', 'created_utc']
-		, "columns": ["id", "author", "body", "body_html", "new", "created_utc", "name", "context", "link_title", "subreddit", "parent_id", "distinguished"]
-	}
-	, 'postReply': {
-		name: 'postReply'
-		, key: 'id'
-		, indexes: ['author', 'created_utc']
-		, "columns": ["id", "author", "body", "body_html", "new", "created_utc", "name", "context", "link_title", "subreddit", "parent_id", "distinguished"]
-	}
 };
 var db_mode = {
 	readonly: 'readonly'
