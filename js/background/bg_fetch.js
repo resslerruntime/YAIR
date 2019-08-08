@@ -16,7 +16,11 @@ var actions = {
 			for (var i = 0; i < messages.length; i++) {
 				if (messages[i].kind === "t4") {
 					nCount++;
-					addToDatabase(messages[i].data.dest, messages[i]);
+					if (typeof yair_user_cfg[messages[i].data.dest] === 'undefined') {
+						console.log("YAIR hasn't been initialized for this user yet");
+					} else {
+						addToDatabase(messages[i].data.dest, messages[i]);
+					}
 				}
 			}
 			if (nCount > 0) {
@@ -90,7 +94,7 @@ function addToDatabase(username, message) {
 		var db;
 		var request = indexedDB.open("YAIR_Messages" + username);
 		request.onerror = function(event) {
-			console.error("Database error: " + event.target.errorCode);
+			console.error("bg_fetch database error: " + event.target.errorCode);
 		};
 		request.onsuccess = function(event) {
 			db = event.target.result;
@@ -110,6 +114,7 @@ function addToDatabase(username, message) {
 				"subject":message.data.subject
 			}];
 			var request = objectStore.add(formatted_message[0]);
+			console.log("bg_fetch added " + message.data.id + " to Database");
 		};
 	}
 }
