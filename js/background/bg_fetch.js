@@ -3,7 +3,6 @@ var updateNotificationsInterval = null;
 var lastNotificationCount = 0;
 var actions = {
 	updateNotifications: function (request, callback) {
-		console.log("updateNotifications Called")
 		$.ajax({
 			type: 'GET'
 			, url: 'https://www.reddit.com/message/unread.json?raw_json=1'
@@ -110,7 +109,6 @@ function addToDatabase(username, message) {
 				"new":message.data.new,
 				"subject":message.data.subject
 			}];
-			console.log(formatted_message);
 			var request = objectStore.add(formatted_message[0]);
 		};
 	}
