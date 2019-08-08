@@ -169,7 +169,7 @@
 					});
 				});
 			}
-			
+
 			yair.view.updateBodyClass();
 			yair.model.setConversationStatus(conversation, true);
 			
