@@ -61,6 +61,7 @@
 			"js/content-inbox/dbhelper.js",
 			"js/content-inbox/quill.min.js",
 			"js/content-inbox/turndown.min.js",
+			"js/notifications/fetch.js",
 			"js/notifications/moment-2.24.0.min.js"
 		],
 		"run_at":"document_start",
@@ -69,15 +70,15 @@
 	],
 	"background":{
 		"scripts":[
-		"js/global/constants.js",
-		"js/background/bg-global.js",
-		"js/background/bg-config.js",
-		"js/background/bg-indexeddb.js",
-		"js/background/bg-drafts.js",
-		"js/background/bg-proxy.js",
-		"js/content-inbox/jquery.min.js",
-		"js/notifications/moment-2.24.0.min.js",
-		"js/background/bg_fetch.js"
+			"js/global/constants.js",
+			"js/background/bg-global.js",
+			"js/background/bg-config.js",
+			"js/background/bg-indexeddb.js",
+			"js/background/bg-drafts.js",
+			"js/background/bg-proxy.js",
+			"js/content-inbox/jquery.min.js",
+			"js/notifications/moment-2.24.0.min.js",
+			"js/background/bg_fetch.js"
 		]
 	},
 	"browser_action":{
