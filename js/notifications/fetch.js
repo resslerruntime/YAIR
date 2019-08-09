@@ -50,18 +50,16 @@ function displayNotifications(notifications) {
 }
 // Will force a refresh of notifications and will then display them
 function updateAndDisplayNotifications(callback) {
-	//chrome.runtime.sendMessage({ //not working in Chrome, even though this should be the new way
-	chrome.extension.sendRequest({
+	chrome.runtime.sendMessage({
 		action: 'updateNotifications'
 	}, function (response) {
 		displayNotifications(response);
-		if (callback) callback(response);
+		console.log(response);
 	});
 }
 // Mark a private message as read
 function markAsRead(name, modhash, callback) {
-	//chrome.runtime.sendMessage({ //not working in Chrome, even though this should be the new way
-	chrome.extension.sendRequest({
+	chrome.runtime.sendMessage({
 		action: 'markAsRead'
 		, name: name
 		, modhash: modhash

@@ -81,12 +81,6 @@ var actions = {
 };
 actions.initNotificationsInterval();
 
-function onRequest(request, sender, callback) {
-	if (actions.hasOwnProperty(request.action)) {
-		actions[request.action](request, callback);
-	}
-}
-
 function addToDatabase(username, message) {
 	if (yair_user_cfg[username].pmInboxInitialized == true) {
 		window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
@@ -118,6 +112,13 @@ function addToDatabase(username, message) {
 		};
 	}
 }
+
 // Wire up the listener.
-chrome.extension.onRequest.addListener(onRequest);
-//chrome.runtime.onMessage.addListener(onRequest); 
+chrome.runtime.onMessage.addListener(
+	function (request, sender, sendResponse) {
+		if (actions.hasOwnProperty(request.action)) {
+			actions[request.action](request, sendResponse);
+		}
+		return true;
+	}
+);
