@@ -67,16 +67,7 @@ function markAsRead(name, modhash, callback) {
 		, modhash: modhash
 	}, callback);
 }
-// Set the last updated text, which is now unused...
-function setLastUpdateText(lastUpdate) {
-	if (lastUpdate === null) {
-		lastUpdate = "Never";
-	}
-	else {
-		lastUpdate = moment(lastUpdate, 'X').fromNow();
-	}
-	$(".lastUpdate").html(lastUpdate);
-}
+
 // truncates input to defined length while ensuring that the text always ends in a full word
 function truncate(text, length) {
 	if (text.length > length) {
@@ -142,7 +133,5 @@ $(document).ready(function () {
 			}, 1500)
 			//causes spinner to go around a minimum of one cycle
 		updateAndDisplayNotifications();
-		setLastUpdateText(moment().format('X'));
 	});
-	setLastUpdateText(localStorage.getItem('lastUpdate'));
 });
