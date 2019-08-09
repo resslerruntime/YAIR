@@ -120,3 +120,4 @@ function addToDatabase(username, message) {
 }
 // Wire up the listener.
 chrome.extension.onRequest.addListener(onRequest);
+//chrome.runtime.onMessage.addListener(onRequest); 
