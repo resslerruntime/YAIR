@@ -54,7 +54,6 @@ function updateAndDisplayNotifications(callback) {
 		action: 'updateNotifications'
 	}, function (response) {
 		displayNotifications(response);
-		console.log(response);
 	});
 }
 // Mark a private message as read
