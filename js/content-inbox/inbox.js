@@ -410,6 +410,10 @@
 				yair.$e.overlay.empty().off();
 				yair.controller.resetInbox();
 			});
+			$config.find('#YAIRReindexMessages').on('click', function () {
+				yair.$e.overlay.empty().off();
+				yair.controller.reindexMessages();
+			});
 			$config.find('#YAIRCancelResetInbox').on('click', function () {
 				$config.find('#YAIRConfirmReset').addClass('yair-hide');
 			});
@@ -591,6 +595,16 @@
 				yair.cfg.set('pmInboxInitialized', false);
 				yair.controller.reloadInbox();
 			});
+		}
+		, reindexMessages: function () {
+				yair.model.reindexPrivateMessages(function () {
+					yair.view.update();
+					yair.view.setFavicon();
+				}, function (errorMessage) {
+					yair.view.showNotification(errorMessage, -1);
+					console.error("DB has NOT been updated", arguments);
+				});
+				yair.controller.reloadInbox();
 		}
 		, showMessageClick: function () {
 			var conversation = $(this).data('conversation');

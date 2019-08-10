@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.7
+* added reindex button in admin panel
+
+## 0.2.6
+* Bump manifest version for release of first Firefox Version
+
+## 0.2.3-0.2.5
+* Series of quick formatting fixes
+
 ## 0.2.2
 * Fix for messages from subreddits (Starting with #) showing as from "null" in notifications, and not showing in inbox
 

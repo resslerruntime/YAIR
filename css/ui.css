@@ -839,7 +839,8 @@
   .yair-config button.yair-save-button,
   .yair-config #YAIRResetInbox,
   .yair-config #YAIRResetInboxToggle,
-  .yair-config #YAIRCancelResetInbox {
+  .yair-config #YAIRCancelResetInbox,
+  .yair-config #YAIRReindexMessages {
     background-color: #0DD3BB;
     border: unset;
     padding: 5px;
@@ -848,7 +849,8 @@
     width: 100px; }
   .yair-config button.yair-save-button {
     margin-right: 8px; }
-  .yair-config button#YAIRResetInboxToggle {
+  .yair-config button#YAIRResetInboxToggle,
+  .yair-config button#YAIRReindexMessages {
     margin-bottom: 10px; }
   .yair-config #YAIRConfirmReset {
     margin: auto;

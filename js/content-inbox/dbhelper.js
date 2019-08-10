@@ -120,6 +120,14 @@
 		});
 	}
 
+	yair.model.reindexPrivateMessages = function (success, error) {
+		var callback = function () {
+			$.get('/message/inbox');
+			success();
+		};
+		new PMIndexer(function () { callback();	}, error);
+	};
+
 	function addPMDataToDatabase(response, callback, context) {
 		var messages = extractPrivateMessages(response);
 		yair.proxy(['yair', 'db', 'addAll'], [db_tables.privateMessages.name, messages], function (numAdded) {

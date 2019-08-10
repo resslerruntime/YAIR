@@ -59,20 +59,28 @@
 				</div>
 			</div>
 			<div class="yair-config-content" data-tab-content="admin">
-				<button id="YAIRResetInboxToggle">Reset Inbox</button>
-				<p class="yair-config-info">
-					If something has gone wrong (somehow the data in your inbox has been corrupted, messages have gone missing, etc), you can use this option to clear out your inbox and restart from scratch.
-				</p>
-				<br>
-				<p class="yair-config-info">
-					Do note however: Reddit normally will not store more than 1000 private messages. YAIR stores messages locally, and thus will store more than 1000 messages. If you have more than a thousand messages, using this option means that you will lose your oldest messages.
-				</p>
-				<div id="YAIRConfirmReset" class="yair-hide">
-					<p>Are you sure? This action can't be undone.</p>
-					<button id="YAIRResetInbox">Reset Inbox</button>
-					<button id="YAIRCancelResetInbox">Cancel</button>
+				<div id="ResetInbox">
+					<button id="YAIRResetInboxToggle">Reset Inbox</button>
+					<p class="yair-config-info">
+						If something has gone wrong (somehow the data in your inbox has been corrupted), you can use this option to clear out your inbox and restart from scratch.
+					</p>
+					<br>
+					<p class="yair-config-info">
+						Do note however: Reddit normally will not store more than 1000 private messages. YAIR stores messages locally, and thus will store more than 1000 messages. If you have more than a thousand messages, using this option means that you will lose your oldest messages.
+					</p>
+					<div id="YAIRConfirmReset" class="yair-hide">
+						<p>Are you sure? This action can't be undone.</p>
+						<button id="YAIRResetInbox">Reset Inbox</button>
+						<button id="YAIRCancelResetInbox">Cancel</button>
+					</div>
 				</div>
-			</div>
+				<div id="reindexMessages">
+					<button id="YAIRReindexMessages">Reindex Inbox</button>
+					<p class="yair-config-info">
+						If messages you know you've gotten aren't showing up in your inbox, click this button to reindex all messages without resetting the inbox. This might take a long time if you have a lot of messages!
+					</p>
+				</div>
+				</div>
 			<div class="yair-config-content" data-tab-content="about">
 				<p>
 					YAIR was built by <a href="/u/adhesivecheese">/u/AdhesiveCheese</a>, building off the groundwork laid by Reddit Inbox Revamp and Reddit notifier. YAIR's design is inspired by first and foremost by RIR, but also Gmail and Reddit's Beta Modmail.

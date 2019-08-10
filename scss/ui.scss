@@ -1005,7 +1005,8 @@
 	button.yair-save-button,
 	#YAIRResetInbox,
 	#YAIRResetInboxToggle,
-	#YAIRCancelResetInbox {
+	#YAIRCancelResetInbox,
+	#YAIRReindexMessages {
 		background-color: $link;
 		border: unset;
 		padding: 5px;
@@ -1016,7 +1017,8 @@
 	button.yair-save-button {
 		margin-right: 8px;
 	}
-	button#YAIRResetInboxToggle {
+	button#YAIRResetInboxToggle,
+	button#YAIRReindexMessages {
 		margin-bottom: 10px;
 	}
 	#YAIRConfirmReset {
