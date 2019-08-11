@@ -55,8 +55,7 @@
 		this.request();
 	}
 	PMIndexer.prototype.request = function () {
-		//var url = 'http://reddit.com/message/messages.json?raw_json=1&limit=100'; //FF Line
-		var url = '/message/messages.json?raw_json=1&limit=100'; //Chrome Line
+		var url = 'https://reddit.com//message/messages.json?raw_json=1&limit=100';
 		if (typeof this.direction === "string") {
 			url += '&' + this.direction + '=' + this.reference;
 		}

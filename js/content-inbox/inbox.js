@@ -147,8 +147,7 @@
 				// TODO: This should be a function
 				$submit.on('click', function () {
 					yair.view.showLoading("Message is being sent");
-					//var postXhr = $.post('https://www.reddit.com/api/comment', { //Firefox Line
-					var postXhr = $.post('/api/comment', {	//Chrome Line
+					var postXhr = $.post('https://www.reddit.com/api/comment', {
 						thing_id: responseId
 						, uh: yair.model.uh
 						, text: $input.val()
