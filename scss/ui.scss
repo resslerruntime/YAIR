@@ -179,7 +179,7 @@
 }
 
 /*****************
-*     Sidebar    * 
+*     Sidebar    *
 *****************/
 .yair-show-inbox {
 	.inbox .icon-inbox {
@@ -219,7 +219,7 @@
 	}
 	.modmail-inbox .title {
 		@extend %activeLink;
-	} 
+	}
 }
 .yair-show-moddrafts {
 	.modmail .icon-drafts {
@@ -332,7 +332,7 @@
 }
 
 /*****************
-*      Inbox     * 
+*      Inbox     *
 *****************/
 .yair-main-panel {
 	min-width: 350px;
@@ -638,6 +638,9 @@
 			}
 		}
 	}
+	&.yair-compact-mode .yair-message-row {
+		border-bottom: 1px solid $nightmode-dark !important;
+	}
 }
 .yair-nightmode,
 .res-nightmode {
@@ -647,6 +650,7 @@
 	.yair-header-panel,
 	.yair-config,
 	#header,
+	#markdown,
 	.yair-load-more {
 		background-color: $nightmode-dark !important;
 	}
@@ -706,7 +710,7 @@
 	}
 	.yair-compact-mode .yair-message-row,
 	.yair-message-editor, .yair-load-more {
-		border-color: $black !important;
+		border-color: $nightmode-dark !important;
 	}
 	.yair-overlay {
 		background-color: rgba(255,255,255,0.2) !important;
@@ -720,7 +724,10 @@
 	.yair-main-panel .yair-modmail {
 		background-color: $modmail-night !important;
 	}
-	
+	#markdown, .yair-privatemessage-container .yair-conversation-preview::before {
+		color: $nightmode-light;
+	}
+
 }
 
 /*****************
@@ -852,7 +859,7 @@
 				font-size: 14px;
 				color: $white;
 				cursor: pointer;
-				
+
 			}
 			.yair-conversation-reply-btn {
 				float: right;

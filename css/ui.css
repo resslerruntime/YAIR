@@ -131,7 +131,7 @@
     background-position: 0 -238px; }
 
 /*****************
-*     Sidebar    * 
+*     Sidebar    *
 *****************/
 .yair-show-inbox .inbox .icon-inbox {
   background-position: 0 -85px; }
@@ -223,7 +223,7 @@
       color: #949494; }
 
 /*****************
-*      Inbox     * 
+*      Inbox     *
 *****************/
 .yair-main-panel {
   min-width: 350px;
@@ -442,10 +442,8 @@
 .yair-nightmode .yair-text,
 .yair-nightmode label, .yair-nightmode p, .yair-nightmode ul, .yair-nightmode .yair-config-tab, .yair-nightmode h1, .yair-nightmode h2, .yair-nightmode h3, .yair-nightmode h4, .yair-nightmode h5, .yair-nightmode h6 {
   color: #CCCCCC !important; }
-
 .yair-nightmode .yair-config h2 {
   color: #FFFFFF !important; }
-
 .yair-nightmode #header {
   background-color: #353535 !important;
   border-color: #4f4f4f !important; }
@@ -471,6 +469,8 @@
       border-color: #4f4f4f !important; }
     .yair-nightmode #header #header-bottom-right a {
       color: #CCCCCC !important; }
+.yair-nightmode.yair-compact-mode .yair-message-row {
+  border-bottom: 1px solid #2C2C2C !important; }
 
 .yair-nightmode .yair-body,
 .yair-nightmode .yair-main-panel,
@@ -478,6 +478,7 @@
 .yair-nightmode .yair-header-panel,
 .yair-nightmode .yair-config,
 .yair-nightmode #header,
+.yair-nightmode #markdown,
 .yair-nightmode .yair-load-more,
 .res-nightmode .yair-body,
 .res-nightmode .yair-main-panel,
@@ -485,9 +486,9 @@
 .res-nightmode .yair-header-panel,
 .res-nightmode .yair-config,
 .res-nightmode #header,
+.res-nightmode #markdown,
 .res-nightmode .yair-load-more {
   background-color: #2C2C2C !important; }
-
 .yair-nightmode .yair-sidebar-title a,
 .yair-nightmode .yair-datetime,
 .yair-nightmode .yair-conversation-title,
@@ -505,7 +506,6 @@
 .res-nightmode .yair-conversation-input::placeholder,
 .res-nightmode #YAIRSearchInput {
   color: #CCCCCC !important; }
-
 .yair-nightmode #header,
 .yair-nightmode .yair-sidebar-title,
 .yair-nightmode .yair-sidebar-nav,
@@ -547,7 +547,6 @@
 .res-nightmode #editor,
 .res-nightmode .yair-sidebar-panel {
   border-color: #4f4f4f !important; }
-
 .yair-nightmode .yair-message-row,
 .yair-nightmode .yair-search-container,
 .yair-nightmode .yair-privatemessage-container,
@@ -561,48 +560,43 @@
 .res-nightmode .yair-sidebar-footer,
 .res-nightmode #YAIRSearchButton {
   background-color: #353535 !important; }
-
 .yair-nightmode .yair-pm-header,
 .res-nightmode .yair-pm-header {
   background-color: #424242 !important; }
-
 .yair-nightmode .yair-unread,
 .res-nightmode .yair-unread {
   background-color: #4f4f4f !important; }
-
 .yair-nightmode .icon,
 .res-nightmode .icon {
-  background-color: transparent !important;
+  background-color: rgba(0, 0, 0, 0) !important;
   border-style: none !important; }
-
 .yair-nightmode .yair-message-row-control,
 .yair-nightmode .yair-collapsed .yair-pm-header,
 .res-nightmode .yair-message-row-control,
 .res-nightmode .yair-collapsed .yair-pm-header {
   background: rgba(0, 0, 0, 0.2) !important; }
-
 .yair-nightmode .yair-compact-mode .yair-message-row,
 .yair-nightmode .yair-message-editor, .yair-nightmode .yair-load-more,
 .res-nightmode .yair-compact-mode .yair-message-row,
 .res-nightmode .yair-message-editor,
 .res-nightmode .yair-load-more {
-  border-color: #000000 !important; }
-
+  border-color: #2C2C2C !important; }
 .yair-nightmode .yair-overlay,
 .res-nightmode .yair-overlay {
   background-color: rgba(255, 255, 255, 0.2) !important; }
-
 .yair-nightmode .ql-stroke,
 .res-nightmode .ql-stroke {
   stroke: #CCCCCC !important; }
-
 .yair-nightmode .ql-fill,
 .res-nightmode .ql-fill {
   fill: #CCCCCC !important; }
-
 .yair-nightmode .yair-main-panel .yair-modmail,
 .res-nightmode .yair-main-panel .yair-modmail {
   background-color: #656357 !important; }
+.yair-nightmode #markdown, .yair-nightmode .yair-privatemessage-container .yair-conversation-preview::before,
+.res-nightmode #markdown,
+.res-nightmode .yair-privatemessage-container .yair-conversation-preview::before {
+  color: #CCCCCC; }
 
 /*****************
 *  Conversation  *
@@ -759,10 +753,8 @@
   min-width: 199px; }
   .yair-compact-mode .yair-sidebar-panel .yair-sidebar-menu {
     padding: 0; }
-
 .yair-compact-mode .yair-sidebar-footer {
   width: 167px; }
-
 .yair-compact-mode .yair-main-panel {
   min-width: calc(100% - 200px); }
   .yair-compact-mode .yair-main-panel .yair-inbox-panel .yair-message-row {
@@ -783,7 +775,6 @@
         margin-bottom: 4px; }
       .yair-compact-mode .yair-main-panel .yair-inbox-panel .yair-message-row .yair-mrc-wrapper .yair-text {
         -webkit-line-clamp: 1; }
-
 .yair-compact-mode .yair-privatemessage-container {
   margin: 0;
   box-shadow: unset; }

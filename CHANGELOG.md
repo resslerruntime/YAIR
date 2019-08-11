@@ -3,6 +3,7 @@
 ## 0.2.8
 * Make reindex work if in a message
 * Almost complete cross-compatibility with Firefox version. Only thing that needs to be switched is chrome-extension for moz-extension
+* Nightmode tweaks (address #17 and other small tweaks)
 * Notes: Notifier currently doesn't work in Firefox unless content protection is totally turned off. This is, as far as I can tell, a limitation of the browser and not anything I can work around.
 
 ## 0.2.7
