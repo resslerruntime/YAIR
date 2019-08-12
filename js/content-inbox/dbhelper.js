@@ -55,7 +55,7 @@
 		this.request();
 	}
 	PMIndexer.prototype.request = function () {
-		var url = 'https://reddit.com//message/messages.json?raw_json=1&limit=100';
+		var url = 'https://old.reddit.com/message/messages.json?raw_json=1&limit=100';
 		if (typeof this.direction === "string") {
 			url += '&' + this.direction + '=' + this.reference;
 		}
@@ -178,7 +178,7 @@
 		yair.proxy(['yair', 'db', 'get'], queryParams, function (messages) {
 			var conversations = yair.model.getConversationsFromMessages(messages);
 		});
-		
+
 		//first_message_name
 		var index = {
 			key: 'first_message_name'
