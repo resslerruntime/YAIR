@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.8.1
+* Revert to using Relative URL's, as using the absolute URL's were causing intermittent problems
+
 ## 0.2.8
 * Make reindex work if in a message
 * Almost complete cross-compatibility with Firefox version. Only thing that needs to be switched is chrome-extension for moz-extension
