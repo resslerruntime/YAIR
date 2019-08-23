@@ -1,7 +1,7 @@
 {
 	"manifest_version":2,
 	"name":"YAIR",
-	"version":"0.2.9",
+	"version":"0.2.9.1",
 	"description":"Revamps the Reddit inbox",
 	"icons":{
 		"16":"images/icons/16.png",

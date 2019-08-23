@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.9.1
+* prevent correspondent being undefined from causing messages to fail to load.
+
 ## 0.2.9
 * Firefox compatibility on a unified codebase, but for real this time.
 
