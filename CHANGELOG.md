@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.8.2
+* Clicking on the name of a subreddit you've sent a message to now correctly directs you to the subreddit.
+
 ## 0.2.8.1
 * Revert to using Relative URL's, as using the absolute URL's were causing intermittent problems
 

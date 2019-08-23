@@ -262,8 +262,8 @@
 			if (hasDraft) $row.addClass('yair-has-draft');
 			if (modmail) $row.addClass('yair-modmail');
 			$row.data('conversation', conversation);
-			if (modmail == true) {
-				subreddit = correspondent.substring(1);
+			if (correspondent.charAt(0) == "#") {
+				var subreddit = correspondent.substring(1);
 				$row.find('.yair-correspondent').html("<a href='https://www.reddit.com/r/" + subreddit + "' class='author'>" + correspondent + "</a>");
 			} else {
 				$row.find('.yair-correspondent').html("<a href='https://www.reddit.com/user/" + correspondent + "' class='author'>" + correspondent + "</a>");
