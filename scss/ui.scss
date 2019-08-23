@@ -181,6 +181,9 @@
 	.icon, .styled-checkbox + label:before {
 		background: url("moz-extension://__MSG_@@extension_id__/images/sprites.png");
 	}
+	.styled-checkbox + label:before {
+		background-position: 0 -221px;
+	}
 }
 
 /*****************
@@ -747,11 +750,11 @@
 		vertical-align: top;
 		.yair-save-toggle {
 			margin-top: 2px;
-			padding-left: 8px;
 			margin-right: 0;
 		}
 		.yair-conversation-title {
 			font-size: 17px;
+			padding-left: 8px;
 			@extend %clipOverflow;
 			color: $black;
 		}
@@ -770,7 +773,6 @@
 			margin-top: 2px;
 			width: 15px;
 			background-position: 0 -340px;
-			float: unset;
 		}
 	}
 }

@@ -130,7 +130,9 @@
 
 @media screen and (min--moz-device-pixel-ratio: 0) {
   .icon, .styled-checkbox + label:before {
-    background: url("moz-extension://__MSG_@@extension_id__/images/sprites.png"); } }
+    background: url("moz-extension://__MSG_@@extension_id__/images/sprites.png"); }
+  .styled-checkbox + label:before {
+    background-position: 0 -221px; } }
 
 /*****************
 *     Sidebar    *
@@ -640,10 +642,10 @@
     vertical-align: top; }
     .yair-conversation-header .yair-title-container .yair-save-toggle {
       margin-top: 2px;
-      padding-left: 8px;
       margin-right: 0; }
     .yair-conversation-header .yair-title-container .yair-conversation-title {
       font-size: 17px;
+      padding-left: 8px;
       color: #000000; }
   .yair-conversation-header .conversation-header-right {
     min-width: 80px !important;
@@ -657,8 +659,7 @@
       height: 15px;
       margin-top: 2px;
       width: 15px;
-      background-position: 0 -340px;
-      float: unset; }
+      background-position: 0 -340px; }
 
 .yair-privatemessage-container {
   position: relative;
