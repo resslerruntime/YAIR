@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.9
+* Firefox compatibility on a unified codebase, but for real this time.
+
 ## 0.2.8.2
 * Clicking on the name of a subreddit you've sent a message to now correctly directs you to the subreddit.
 
