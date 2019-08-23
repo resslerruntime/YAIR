@@ -10,8 +10,8 @@
 	},
 	"permissions":[
 		"cookies",
-		"http://*.reddit.com/*",
-		"https://*.reddit.com/*"
+		"*://*.reddit.com/*",
+		"https://www.reddit.com/message/unread.json?raw_json=1"
 	],
 	"web_accessible_resources":[
 		"template/*",

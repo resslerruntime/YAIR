@@ -89,7 +89,6 @@
 	top: 3px;
 	margin-right: 4px;
 	background-image: url("chrome-extension://__MSG_@@extension_id__/images/icons.png");
-	/*background-image: url("moz-extension://__MSG_@@extension_id__/images/icons.png");*/
 	background-position-x: -174px;
 	background-position-y: -1px;
 	width: 16px;
@@ -100,12 +99,16 @@
 	float: left;
 	top: 3px;
 	background-image: url("chrome-extension://__MSG_@@extension_id__/images/icons.png");
-	/*background-image: url("moz-extension://__MSG_@@extension_id__/images/icons.png");*/
 	background-position-x: -191px;
 	background-position-y: -1px;
 	width: 16px;
 	height: 16px;
 }
+
+/*Firefox Hack*/
+@media screen and (min--moz-device-pixel-ratio:0) {
+	#NREFloat .yair-privatemessages, #NREFloat .yair-mail { background: url("moz-extension://__MSG_@@extension_id__/images/icons.png"); } }
+
 
 #NREFloat .yair-havemail {
 	background-position-y: -20px !important;

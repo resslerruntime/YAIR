@@ -55,8 +55,13 @@
 		this.request();
 	}
 	PMIndexer.prototype.request = function () {
-		//var url = 'https://old.reddit.com/message/messages.json?raw_json=1&limit=100';
-		var url = '/message/messages.json?raw_json=1&limit=100';
+		var browser=navigator.userAgent.toLowerCase(); //Firefox browser detection bodge
+		var url = null;
+		if (browser.indexOf('firefox') > -1) {
+			url = 'https://old.reddit.com/message/messages.json?raw_json=1&limit=100';
+		} else {
+			url = '/message/messages.json?raw_json=1&limit=100';
+		}
 		if (typeof this.direction === "string") {
 			url += '&' + this.direction + '=' + this.reference;
 		}

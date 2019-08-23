@@ -147,8 +147,14 @@
 				// TODO: This should be a function
 				$submit.on('click', function () {
 					yair.view.showLoading("Message is being sent");
-					//var postXhr = $.post('https://www.reddit.com/api/comment', {
-					var postXhr = $.post('/api/comment', {
+					var browser=navigator.userAgent.toLowerCase(); //Firefox browser detection bodge
+					var postUrl = null;
+					if (browser.indexOf('firefox') > -1) {
+						postUrl = 'https://www.reddit.com/api/comment';
+					} else {
+						postUrl = '/api/comment';
+					}
+					var postXhr = $.post(postUrl, {
 						thing_id: responseId
 						, uh: yair.model.uh
 						, text: $input.val()
