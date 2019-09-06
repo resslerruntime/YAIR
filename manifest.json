@@ -1,7 +1,7 @@
 {
 	"manifest_version":2,
 	"name":"YAIR",
-	"version":"0.2.9.1",
+	"version":"0.2.9.2",
 	"description":"Revamps the Reddit inbox",
 	"icons":{
 		"16":"images/icons/16.png",
@@ -47,7 +47,7 @@
 			"css/alerts.css"
 		],
 		"js":[
-			"js/content-inbox/jquery.min.js",
+			"js/content-inbox/jquery-3.4.1.min.js",
 			"js/content-inbox/jquery.autogrow-textarea.min.js",
 			"js/content-inbox/snuownd.min.js",
 			"js/global/constants.js",
@@ -76,7 +76,7 @@
 			"js/background/bg-indexeddb.js",
 			"js/background/bg-drafts.js",
 			"js/background/bg-proxy.js",
-			"js/content-inbox/jquery.min.js",
+			"js/content-inbox/jquery-3.4.1.min.js",
 			"js/notifications/moment-2.24.0.min.js",
 			"js/background/bg_fetch.js"
 		]

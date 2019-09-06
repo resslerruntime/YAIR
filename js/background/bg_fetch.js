@@ -107,6 +107,9 @@ function addToDatabase(username, message) {
 				"new":message.data.new,
 				"subject":message.data.subject
 			}];
+			if (!message.data.first_message_name) {
+				formatted_message[0].first_message_name = message.data.name;
+			}
 			var request = objectStore.add(formatted_message[0]);
 			console.log("bg_fetch added " + message.data.id + " to Database");
 		};

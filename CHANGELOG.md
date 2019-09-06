@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.9.2
+* Fix bug with accessing brand new PM chain from notifier
+* Update to jquery 3.4.1 
+
 ## 0.2.9.1
 * prevent correspondent being undefined from causing messages to fail to load.
 
