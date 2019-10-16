@@ -72,62 +72,6 @@
 			}
 		}
 	};
-	var toolbox = {
-		compatibility: function () {
-			toolbox.monitorToolboxMailcount();
-			toolbox.initHtml();
-		}
-		, monitorToolboxMailcount: function () {
-			var tbMailCount = document.querySelector('#tb-mailCount');
-			var lastMailcount = getToolboxMailcount();
-
-			function getToolboxMailcount() {
-				return parseInt(tbMailCount.innerText.replace('[', '').replace(']', ''));
-			}
-
-			function tbMailCountChanged() {
-				var mailCount = getToolboxMailcount();
-				if (mailCount > 0) {
-					// tb says there's mail
-					var mailCount = getToolboxMailcount();
-					if (mailCount === lastMailcount) return;
-					lastMailcount = mailCount;
-					HelpFuncs.checkMail();
-				}
-				else {
-					// tb says there's no mail
-					HelpFuncs.updateMailElements({
-						pm: 0
-						, reply: 0
-					});
-				}
-			}
-			var mutationFilter = {
-				childList: true
-			};
-			var observer = new MutationObserver(tbMailCountChanged);
-			observer.observe(tbMailCount, mutationFilter);
-		}
-		, initHtml: function () {
-			var ori_mail = document.querySelector('#tb-mailCount');
-			var new_pm = document.createElement('a');
-			new_pm.classList.add('yair-privatemessages');
-			new_pm.setAttribute('href', '/message/yair_inbox');
-			var new_pm_count = HelpFuncs.createMessageCount('/message/yair_inbox');
-			var new_reply = document.createElement('a');
-			new_reply.classList.add('yair-mail');
-			new_reply.setAttribute('href', '/message/inbox/');
-			var new_reply_count = HelpFuncs.createMessageCount('/message/inbox');
-			referenceElement(ori_mail.previousSibling).insertAfter(new_pm).insertAfter(new_pm_count).insertAfter(new_reply).insertAfter(new_reply_count);
-			elements.defaultInboxIcons.push(new_reply);
-			elements.defaultInboxCounts.push(new_reply_count);
-			elements.yairInboxIcons.push(new_pm);
-			elements.yairInboxCounts.push(new_pm_count);
-			if (initialMessageCount > 0) {
-				HelpFuncs.checkMail();
-			}
-		}
-	};
 	var HelpFuncs = {
 		createSeparator: function () {
 			var ele = document.createElement('span');
@@ -233,7 +177,6 @@
 		, lastJsonCache: null
 	};
 	onExtLoaded('res', res.compatibility);
-	onExtLoaded('mod-toolbox', toolbox.compatibility);
 
 	function initDefaultDOMChanges() {
 		var ori_mail = document.querySelector('#mail');

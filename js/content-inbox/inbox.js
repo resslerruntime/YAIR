@@ -67,6 +67,7 @@
 					$conversation.find('#collapseToggle').prop("title", "Expand all");
 				}
 			});
+			$conversation.find('#YairExportConversation').on('click', yair.controller.exportConversation);
 			$conversation.find('.yair-conversation-title').text(conversation.subject);
 			$saveToggle.on('click', yair.controller.action.toggleSave);
 			if (yair.cfg.saved.contains(conversation.id)) {
@@ -601,6 +602,41 @@
 				yair.cfg.set('pmInboxInitialized', false);
 				yair.controller.reloadInbox();
 			});
+		}
+		, exportConversation: function(e){
+			var $ele = $(this);
+			var format = $ele.data('format');
+			var conversations = [$('.yair-conversation').data('conversation')];
+			var data = '';
+
+			for(var i = 0; i < conversations.length; i++) {
+				if(i > 0) { data += "\r\n---\r\n---\r\n"; }
+				var conversation = conversations[i];
+				data += '# ' + conversation.subject + "\r\n\r\n";
+				var messages = conversation.messages;
+				messages.sort(function(a, b){
+					if(a.created_utc === b.created_utc) { return 0; }
+					return (a.created_utc > b.created_utc) ? 1 : -1;
+				});
+				for(var j = 0; j < messages.length; j++) {
+					if(j > 0) { data += "\r\n---\r\n"; }
+					var message = messages[j];
+					data += '## From: ' + message.author + ' | Date: ' + sysDateStr(message.created_utc * 1000) + ' ' + sysTimeStr(message.created_utc * 1000, ':') + "\r\n\r\n";
+					data += message.body.replace("\r", "").replace("\n", "\r\n") + "\r\n";
+				}
+			}
+
+			var dataBlob = new Blob([data], {type : 'text/plain'});
+			var downloadUrl = URL.createObjectURL(dataBlob);
+			const a = document.createElement('a');
+			a.style.display = 'none';
+			a.href = downloadUrl;
+			var subject = $('.yair-conversation-title').text();
+			a.download = subject + '_' + sysDateStr(message.created_utc * 1000) + '_' + sysTimeStr(message.created_utc * 1000, ':') + '.txt';
+			document.body.appendChild(a);
+			a.click();
+			window.URL.revokeObjectURL(downloadUrl);
+
 		}
 		, reindexMessages: function () {
 				yair.model.reindexPrivateMessages(function () {

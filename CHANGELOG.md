@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0
+* add ability to export individual conversations (plaintext only exports with markdown)
+* Buttons should all now have tooltips on hover
+* Removed unneded mod-toolbox compatibility that was throwing errors
+
 ## 0.2.9.2
 * Fix bug with accessing brand new PM chain from notifier
 * Update to jquery 3.4.1 
