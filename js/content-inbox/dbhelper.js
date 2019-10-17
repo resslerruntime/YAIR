@@ -52,9 +52,7 @@
 		this.forbidden = null;
 		this.errorCount = 0;
 		this.pageNum = 1;
-		this.request();
-	}
-	PMIndexer.prototype.request = function () {
+
 		var url = '';
 		if (typeof this.direction === "string") {
 			url += '&' + this.direction + '=' + this.reference;
@@ -79,19 +77,9 @@
 			addPMDataToDatabase(response, iterationCallback, this);
 		});
 		yair.view.showStatus("Indexing messages from page " + (this.pageNum));
+		
 	};
-	PMIndexer.prototype.requestSuccess = function (response) {
-		var iterationCallback;
-		if (response.data[this.direction]) {
-			this.reference = response.data[this.direction];
-			iterationCallback = this.request;
-		}
-		else {
-			iterationCallback = this.callback;
-		}
-		this.pageNum++;
-		addPMDataToDatabase(response, iterationCallback, this);
-	};
+/*
 	PMIndexer.prototype.requestError = function (e, textStatus, errorThrown) {
 		if (errorThrown === "Forbidden" && typeof this.forbidden === "function") {
 			this.forbidden();
@@ -110,7 +98,7 @@
 	PMIndexer.prototype.setForbiddenCallback = function (callback) {
 		this.forbidden = callback;
 	};
-
+*/
 	function indexNexPrivateMessages(callback, fail) {
 		var queryParams = [ db_tables.privateMessages.name, 'created_utc', true, 0, yair.cfg.data.max403Retries ];
 		yair.proxy(['yair', 'db', 'get'], queryParams, function (latestMessages) {
@@ -140,7 +128,6 @@
 	function addPMDataToDatabase(response, callback, context) {
 		var messages = extractPrivateMessages(response);
 		yair.proxy(['yair', 'db', 'addAll'], [db_tables.privateMessages.name, messages], function (numAdded) {
-			console.log(context);
 			callback.call(context);
 		});
 	}
