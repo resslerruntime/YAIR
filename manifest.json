@@ -21,51 +21,51 @@
 	],
 	"content_scripts":[
 		{
-		"matches":[
-			"http://*.reddit.com/*",
-			"https://*.reddit.com/*"
-		],
-		"css":[
-			"css/notification_icons.css"
-		],
-		"js":[
-			"js/global/extension-scanner.js",
-			"js/content-all/notification_icons.js"
-		],
-		"run_at":"document_start",
-		"all_frames":true
+			"matches":[
+				"http://*.reddit.com/*",
+				"https://*.reddit.com/*"
+			],
+			"css":[
+				"css/notification_icons.css"
+			],
+			"js":[
+				"js/global/extension-scanner.js",
+				"js/content-all/notification_icons.js"
+			],
+			"run_at":"document_start",
+			"all_frames":true
 		},
 		{
-		"matches":[
-			"http://*.reddit.com/message/yair_*",
-			"https://*.reddit.com/message/yair_*"
-		],
-		"css":[
-			"css/ui.css",
-			"css/quill.core.css",
-			"css/quill.snow.css",
-			"css/alerts.css"
-		],
-		"js":[
-			"js/content-inbox/jquery-3.4.1.min.js",
-			"js/content-inbox/jquery.autogrow-textarea.min.js",
-			"js/content-inbox/snuownd.min.js",
-			"js/global/constants.js",
-			"js/global/command-events.js",
-			"js/global/extension-scanner.js",
-			"js/content-inbox/global.js",
-			"js/content-inbox/alerts.js",
-			"js/content-inbox/config.js",
-			"js/content-inbox/generic.js",
-			"js/content-inbox/inbox.js",
-			"js/content-inbox/dbhelper.js",
-			"js/content-inbox/quill.min.js",
-			"js/content-inbox/turndown.min.js",
-			"js/notifications/fetch.js",
-			"js/notifications/moment-2.24.0.min.js"
-		],
-		"run_at":"document_start",
-		"all_frames":true
+			"matches":[
+				"http://*.reddit.com/message/yair_*",
+				"https://*.reddit.com/message/yair_*"
+			],
+			"css":[
+				"css/ui.css",
+				"css/quill.core.css",
+				"css/quill.snow.css",
+				"css/alerts.css"
+			],
+			"js":[
+				"js/content-inbox/jquery-3.4.1.min.js",
+				"js/content-inbox/jquery.autogrow-textarea.min.js",
+				"js/content-inbox/snuownd.min.js",
+				"js/global/constants.js",
+				"js/global/command-events.js",
+				"js/global/extension-scanner.js",
+				"js/content-inbox/global.js",
+				"js/content-inbox/alerts.js",
+				"js/content-inbox/config.js",
+				"js/content-inbox/generic.js",
+				"js/content-inbox/inbox.js",
+				"js/content-inbox/dbhelper.js",
+				"js/content-inbox/quill.min.js",
+				"js/content-inbox/turndown.min.js",
+				"js/notifications/fetch.js",
+				"js/notifications/moment-2.24.0.min.js"
+			],
+			"run_at":"document_start",
+			"all_frames":true
 		}
 	],
 	"background":{

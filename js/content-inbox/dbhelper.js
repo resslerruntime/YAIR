@@ -55,25 +55,29 @@
 		this.request();
 	}
 	PMIndexer.prototype.request = function () {
-		var browser=navigator.userAgent.toLowerCase(); //Firefox browser detection bodge
-		var url = null;
-		if (browser.indexOf('firefox') > -1) {
-			url = 'https://old.reddit.com/message/messages.json?raw_json=1&limit=100';
-		} else {
-			url = '/message/messages.json?raw_json=1&limit=100';
-		}
+		var url = '';
 		if (typeof this.direction === "string") {
 			url += '&' + this.direction + '=' + this.reference;
 		}
 		else {
 			this.direction = 'after';
-		}
-		var req = $.ajax({
-			url: url
-			, context: this
+		}		
+		
+		chrome.runtime.sendMessage({
+			action: 'getPrivateMessages', direction: this.direction, reference: url
+		}, function (response) {
+			this.reference = response.data.after;
+			var iterationCallback;
+			if (response.data[this.direction]) {
+				this.reference = response.data[this.direction];
+				iterationCallback = this.request;
+			}
+			else {
+				iterationCallback = this.callback;
+			}
+			this.pageNum++;
+			addPMDataToDatabase(response, iterationCallback, this);
 		});
-		req.done(this.requestSuccess);
-		req.fail(this.requestError);
 		yair.view.showStatus("Indexing messages from page " + (this.pageNum));
 	};
 	PMIndexer.prototype.requestSuccess = function (response) {
@@ -136,6 +140,7 @@
 	function addPMDataToDatabase(response, callback, context) {
 		var messages = extractPrivateMessages(response);
 		yair.proxy(['yair', 'db', 'addAll'], [db_tables.privateMessages.name, messages], function (numAdded) {
+			console.log(context);
 			callback.call(context);
 		});
 	}
