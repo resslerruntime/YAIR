@@ -79,26 +79,7 @@
 		yair.view.showStatus("Indexing messages from page " + (this.pageNum));
 		
 	};
-/*
-	PMIndexer.prototype.requestError = function (e, textStatus, errorThrown) {
-		if (errorThrown === "Forbidden" && typeof this.forbidden === "function") {
-			this.forbidden();
-		}
-		else if (++this.errorCount < yair.cfg.data.maxAjaxRetries) {
-			var _this = this;
-			yair.view.showStatus("An error occured trying to load messages, retrying in " + yair.cfg.data.ajaxRetryDelay + " seconds");
-			setTimeout(function () {
-				_this.request.call(_this);
-			}, yair.cfg.data.ajaxRetryDelay * 1000);
-		}
-		else if (typeof this.failCallback === "function") {
-			this.failCallback();
-		}
-	};
-	PMIndexer.prototype.setForbiddenCallback = function (callback) {
-		this.forbidden = callback;
-	};
-*/
+
 	function indexNexPrivateMessages(callback, fail) {
 		var queryParams = [ db_tables.privateMessages.name, 'created_utc', true, 0, yair.cfg.data.max403Retries ];
 		yair.proxy(['yair', 'db', 'get'], queryParams, function (latestMessages) {

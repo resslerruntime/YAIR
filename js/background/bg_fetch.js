@@ -11,6 +11,10 @@ var actions = {
 			type: 'GET'
 			, url: 'https://old.reddit.com/message/messages.json?raw_json=1&limit=100'
 		 }).done(function (data) {
+			var username = data.data.children[0].data.author;
+			data.data.children.forEach(function(message){
+				console.log(message.data.author);
+			});
 			callback(data);
 		})
 			
