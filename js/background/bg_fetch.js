@@ -6,16 +6,10 @@ var actions = {
 		var url = 'https://old.reddit.com/message/messages.json?raw_json=1&limit=100';
 		url = url + request.reference;
 		
-		console.log(url);
-		
 		$.ajax({
 			type: 'GET'
 			, url: url
 		 }).done(function (data) {
-			//var username = data.data.children[0].data.author;
-			//data.data.children.forEach(function(message){
-			//	console.log(message.data.author);
-			//});
 			callback(data);
 		})
 			

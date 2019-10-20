@@ -25,7 +25,6 @@
 	}
 	yair.model.updateDb = function (success, error) {
 		var callback = function () {
-			//$.get('/message/inbox');
 			success();
 		};
 		yair.proxy(['yair', 'db', 'countObjectsInStore'], [db_tables.privateMessages.name], function (num) {
@@ -60,11 +59,15 @@
 		}
 		else {
 			this.direction = 'after';
-		}		
+		}
 		chrome.runtime.sendMessage({
 			action: 'getPrivateMessages', direction: this.direction, reference: url
 		}, function (response) {
-			var reference = response.data.after;
+			if (typeof this.direction === "string"){
+				var reference = response.data.after;
+			} else {
+				var reference = response.data.before;
+			}
 			var iterationCallback;
 			if (response.data[this.direction]) {
 				this.reference = response.data[this.direction];
@@ -74,20 +77,21 @@
 				iterationCallback = this.callback;
 			}
 			this.pageNum++;
-			addPMDataToDatabase(response, callback, reference, this.pageNum);
+			addPMDataToDatabase(response, callback, reference, this.pageNum, this.direction);
 		});
 		yair.view.showStatus("Indexing messages from page " + (this.pageNum));
 		
 	};
 
 	function indexNexPrivateMessages(callback, fail) {
+		console.log("indexNewPrivateMessages Called");
 		var queryParams = [ db_tables.privateMessages.name, 'created_utc', true, 0, yair.cfg.data.max403Retries ];
 		yair.proxy(['yair', 'db', 'get'], queryParams, function (latestMessages) {
 			var index = 0;
 
 			function tryNext() {
 				if (index < latestMessages.length) {
-					var indexer = new PMIndexer(callback, fail, 'before', latestMessages[index++].name);
+					var indexer = new PMIndexer(callback, 'before', latestMessages[index++].name);
 					indexer.setForbiddenCallback(tryNext);
 				}
 				else {
@@ -106,11 +110,12 @@
 		new PMIndexer(function () { callback();	}, error);
 	};
 
-	function addPMDataToDatabase(response, callback, context, pageNum) {
+	function addPMDataToDatabase(response, callback, reference, pageNum, direction) {
 		var messages = extractPrivateMessages(response);
 		yair.proxy(['yair', 'db', 'addAll'], [db_tables.privateMessages.name, messages], function (numAdded) {
-			if (context) {
-				PMIndexer(callback, 'after', context, pageNum);
+			console.log(reference);
+			if (reference) {
+				PMIndexer(callback, direction, reference, pageNum);
 			} else {
 				callback();
 			}
