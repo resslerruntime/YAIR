@@ -25,7 +25,7 @@
 	}
 	yair.model.updateDb = function (success, error) {
 		var callback = function () {
-			$.get('/message/inbox');
+			//$.get('/message/inbox');
 			success();
 		};
 		yair.proxy(['yair', 'db', 'countObjectsInStore'], [db_tables.privateMessages.name], function (num) {
@@ -44,14 +44,15 @@
 		});
 	};
 
-	function PMIndexer(callback, fail, direction, reference) {
+	function PMIndexer(callback, direction, reference, pageNum) {
 		this.callback = callback;
-		this.failCallback = fail;
 		this.direction = direction;
 		this.reference = reference;
 		this.forbidden = null;
 		this.errorCount = 0;
-		this.pageNum = 1;
+		if (pageNum) {
+			this.pageNum = pageNum;
+		} else { this.pageNum = 1; }
 
 		var url = '';
 		if (typeof this.direction === "string") {
@@ -60,11 +61,10 @@
 		else {
 			this.direction = 'after';
 		}		
-		
 		chrome.runtime.sendMessage({
 			action: 'getPrivateMessages', direction: this.direction, reference: url
 		}, function (response) {
-			this.reference = response.data.after;
+			var reference = response.data.after;
 			var iterationCallback;
 			if (response.data[this.direction]) {
 				this.reference = response.data[this.direction];
@@ -74,7 +74,7 @@
 				iterationCallback = this.callback;
 			}
 			this.pageNum++;
-			addPMDataToDatabase(response, iterationCallback, this);
+			addPMDataToDatabase(response, callback, reference, this.pageNum);
 		});
 		yair.view.showStatus("Indexing messages from page " + (this.pageNum));
 		
@@ -106,10 +106,14 @@
 		new PMIndexer(function () { callback();	}, error);
 	};
 
-	function addPMDataToDatabase(response, callback, context) {
+	function addPMDataToDatabase(response, callback, context, pageNum) {
 		var messages = extractPrivateMessages(response);
 		yair.proxy(['yair', 'db', 'addAll'], [db_tables.privateMessages.name, messages], function (numAdded) {
-			callback.call(context);
+			if (context) {
+				PMIndexer(callback, 'after', context, pageNum);
+			} else {
+				callback();
+			}
 		});
 	}
 
