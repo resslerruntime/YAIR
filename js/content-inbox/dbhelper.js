@@ -64,9 +64,9 @@
 			action: 'getPrivateMessages', direction: this.direction, reference: url
 		}, function (response) {
 			if (typeof this.direction === "string"){
-				var reference = response.data.after;
-			} else {
 				var reference = response.data.before;
+			} else {
+				var reference = response.data.after;
 			}
 			var iterationCallback;
 			if (response.data[this.direction]) {
@@ -113,7 +113,6 @@
 	function addPMDataToDatabase(response, callback, reference, pageNum, direction) {
 		var messages = extractPrivateMessages(response);
 		yair.proxy(['yair', 'db', 'addAll'], [db_tables.privateMessages.name, messages], function (numAdded) {
-			console.log(reference);
 			if (reference) {
 				PMIndexer(callback, direction, reference, pageNum);
 			} else {
@@ -206,11 +205,18 @@
 			if (obj.first_message_name === obj.name) {
 				// This is the first message in the conversation, try get the correspondent from it
 				conversation.correspondent = getCorrespondentFromMsg(obj);
+				
+				// If the first message is distinguished as 'moderator' we'll flag it modmail
+				if (obj.distinguished && obj.distinguished === "moderator") {
+					conversation.modmail = true;
+				}
+				
+				if (obj.dest.startsWith("#")) {
+					conversation.modmail = true;
+				}
+
 			}
-			// If the first message is distinguished as 'moderator' we'll flag it modmail
-			if (obj.first_message_name === obj.name && obj.distinguished && obj.distinguished === "moderator") {
-				conversation.modmail = true;
-			}
+			
 		}
 		return ObjectValues(conversations);
 	};
