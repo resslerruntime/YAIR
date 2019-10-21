@@ -38,7 +38,7 @@
 				new PMIndexer(function () {
 					yair.cfg.set('pmInboxInitialized', true);
 					callback();
-				}, error);
+				}, 'after');
 			}
 		});
 	};
@@ -56,9 +56,6 @@
 		var url = '';
 		if (typeof this.direction === "string") {
 			url += '&' + this.direction + '=' + this.reference;
-		}
-		else {
-			this.direction = 'after';
 		}
 		chrome.runtime.sendMessage({
 			action: 'getPrivateMessages', direction: direction, reference: url
