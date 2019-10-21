@@ -61,30 +61,21 @@
 			this.direction = 'after';
 		}
 		chrome.runtime.sendMessage({
-			action: 'getPrivateMessages', direction: this.direction, reference: url
+			action: 'getPrivateMessages', direction: direction, reference: url
 		}, function (response) {
-			if (typeof this.direction === "string"){
+			if (direction === "before"){
 				var reference = response.data.before;
 			} else {
 				var reference = response.data.after;
 			}
-			var iterationCallback;
-			if (response.data[this.direction]) {
-				this.reference = response.data[this.direction];
-				iterationCallback = this.request;
-			}
-			else {
-				iterationCallback = this.callback;
-			}
 			this.pageNum++;
-			addPMDataToDatabase(response, callback, reference, this.pageNum, this.direction);
+			addPMDataToDatabase(response, callback, reference, this.pageNum, direction);
 		});
 		yair.view.showStatus("Indexing messages from page " + (this.pageNum));
 		
 	};
 
 	function indexNexPrivateMessages(callback, fail) {
-		console.log("indexNewPrivateMessages Called");
 		var queryParams = [ db_tables.privateMessages.name, 'created_utc', true, 0, yair.cfg.data.max403Retries ];
 		yair.proxy(['yair', 'db', 'get'], queryParams, function (latestMessages) {
 			var index = 0;
@@ -104,7 +95,6 @@
 
 	yair.model.reindexPrivateMessages = function (success, error) {
 		var callback = function () {
-			$.get('/message/inbox');
 			success();
 		};
 		new PMIndexer(function () { callback();	}, error);
