@@ -677,14 +677,14 @@
 				yair.show = "conversation";
 				yair.showid = pathParts[3];
 			}
-			else if (pathParts[2] === "yair_modarchived") { yair.show = "modarchived"; }
-			else if (pathParts[2] === "yair_modsaved") { yair.show = "modsaved"; }
-			else if (pathParts[2] === "yair_moddrafts") { yair.show = "moddrafts"; }
-			else if (pathParts[2] === "yair_modmail") { yair.show = "modmail"; }
-			else if (pathParts[2] === "yair_saved") { yair.show = "saved"; }
-			else if (pathParts[2] === "yair_archived") { yair.show = "archived"; }
-			else if (pathParts[2] === "yair_drafts") { yair.show = "drafts"; }
-			else { yair.show = "inbox"; }
+			else if (pathParts[2] === "yair_modarchived") { window.scrollTo(0, 0); yair.show = "modarchived"; }
+			else if (pathParts[2] === "yair_modsaved") { window.scrollTo(0, 0); yair.show = "modsaved"; }
+			else if (pathParts[2] === "yair_moddrafts") { window.scrollTo(0, 0); yair.show = "moddrafts"; }
+			else if (pathParts[2] === "yair_modmail") { window.scrollTo(0, 0); yair.show = "modmail"; }
+			else if (pathParts[2] === "yair_saved") { window.scrollTo(0, 0); yair.show = "saved"; }
+			else if (pathParts[2] === "yair_archived") { window.scrollTo(0, 0);yair.show = "archived"; }
+			else if (pathParts[2] === "yair_drafts") { window.scrollTo(0, 0); yair.show = "drafts"; }
+			else { window.scrollTo(0, 0); yair.show = "inbox"; }
 			yair._get = parseQueryString(location.search);
 			if (yair._get.search) {
 				yair._get.searchObj = parseSearchQuery(yair._get.search);
