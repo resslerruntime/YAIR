@@ -80,7 +80,6 @@
 			function tryNext() {
 				if (index < latestMessages.length) {
 					var indexer = new PMIndexer(callback, 'before', latestMessages[index++].name);
-					indexer.setForbiddenCallback(tryNext);
 				}
 				else {
 					fail("Failed to index new private messages, problem requesting forbidden content");
