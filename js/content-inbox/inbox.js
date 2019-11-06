@@ -181,6 +181,17 @@
 			yair.view.updateBodyClass();
 			yair.model.setConversationStatus(conversation, true);
 			
+			//Mark Conversation read on Reddit
+			var browser = navigator.userAgent.toLowerCase(); //Firefox browser detection bodge
+			var postUrl = null;
+			if (browser.indexOf('firefox') > -1) { postUrl = 'https://www.reddit.com/api/read_message'; }
+			else { postUrl = '/api/read_message'; }
+			conversation.messages.forEach(function(element) {
+				if (element.author !== getUsername()){
+					var postXhr = $.post(postUrl, {id: element.name, uh: yair.model.uh});
+				}
+			});
+			
 			$('.icon-archive').on('click', yair.controller.action.bulkDelete);
 			$('.icon-markUnread').on('click', yair.controller.action.bulkMarkUnread);
 			$('.yair-conversation-input').autogrow();
