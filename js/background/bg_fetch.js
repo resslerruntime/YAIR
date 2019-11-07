@@ -2,7 +2,19 @@
 var updateNotificationsInterval = null;
 var lastNotificationCount = 0;
 var actions = {
-	updateNotifications: function (request, callback) {
+	getPrivateMessages: function (request, callback) {
+		var url = 'https://old.reddit.com/message/messages.json?raw_json=1&limit=100';
+		url = url + request.reference;
+		
+		$.ajax({
+			type: 'GET'
+			, url: url
+		 }).done(function (data) {
+			callback(data);
+		})
+			
+	}
+	, updateNotifications: function (request, callback) {
 		$.ajax({
 			type: 'GET'
 			, url: 'https://www.reddit.com/message/unread.json?raw_json=1'

@@ -25,7 +25,6 @@
 	}
 	yair.model.updateDb = function (success, error) {
 		var callback = function () {
-			$.get('/message/inbox');
 			success();
 		};
 		yair.proxy(['yair', 'db', 'countObjectsInStore'], [db_tables.privateMessages.name], function (num) {
@@ -39,72 +38,38 @@
 				new PMIndexer(function () {
 					yair.cfg.set('pmInboxInitialized', true);
 					callback();
-				}, error);
+				}, 'after');
 			}
 		});
 	};
 
-	function PMIndexer(callback, fail, direction, reference) {
+	function PMIndexer(callback, direction, reference, pageNum) {
 		this.callback = callback;
-		this.failCallback = fail;
 		this.direction = direction;
 		this.reference = reference;
 		this.forbidden = null;
 		this.errorCount = 0;
-		this.pageNum = 1;
-		this.request();
-	}
-	PMIndexer.prototype.request = function () {
-		var browser=navigator.userAgent.toLowerCase(); //Firefox browser detection bodge
-		var url = null;
-		if (browser.indexOf('firefox') > -1) {
-			url = 'https://old.reddit.com/message/messages.json?raw_json=1&limit=100';
-		} else {
-			url = '/message/messages.json?raw_json=1&limit=100';
-		}
+		if (pageNum) {
+			this.pageNum = pageNum;
+		} else { this.pageNum = 1; }
+
+		var url = '';
 		if (typeof this.direction === "string") {
 			url += '&' + this.direction + '=' + this.reference;
 		}
-		else {
-			this.direction = 'after';
-		}
-		var req = $.ajax({
-			url: url
-			, context: this
+		chrome.runtime.sendMessage({
+			action: 'getPrivateMessages', direction: direction, reference: url
+		}, function (response) {
+			if (direction === "before"){
+				var reference = response.data.before;
+			} else {
+				var reference = response.data.after;
+			}
+			this.pageNum++;
+			addPMDataToDatabase(response, callback, reference, this.pageNum, direction);
 		});
-		req.done(this.requestSuccess);
-		req.fail(this.requestError);
 		yair.view.showStatus("Indexing messages from page " + (this.pageNum));
-	};
-	PMIndexer.prototype.requestSuccess = function (response) {
-		var iterationCallback;
-		if (response.data[this.direction]) {
-			this.reference = response.data[this.direction];
-			iterationCallback = this.request;
-		}
-		else {
-			iterationCallback = this.callback;
-		}
-		this.pageNum++;
-		addPMDataToDatabase(response, iterationCallback, this);
-	};
-	PMIndexer.prototype.requestError = function (e, textStatus, errorThrown) {
-		if (errorThrown === "Forbidden" && typeof this.forbidden === "function") {
-			this.forbidden();
-		}
-		else if (++this.errorCount < yair.cfg.data.maxAjaxRetries) {
-			var _this = this;
-			yair.view.showStatus("An error occured trying to load messages, retrying in " + yair.cfg.data.ajaxRetryDelay + " seconds");
-			setTimeout(function () {
-				_this.request.call(_this);
-			}, yair.cfg.data.ajaxRetryDelay * 1000);
-		}
-		else if (typeof this.failCallback === "function") {
-			this.failCallback();
-		}
-	};
-	PMIndexer.prototype.setForbiddenCallback = function (callback) {
-		this.forbidden = callback;
+		
 	};
 
 	function indexNexPrivateMessages(callback, fail) {
@@ -114,8 +79,7 @@
 
 			function tryNext() {
 				if (index < latestMessages.length) {
-					var indexer = new PMIndexer(callback, fail, 'before', latestMessages[index++].name);
-					indexer.setForbiddenCallback(tryNext);
+					var indexer = new PMIndexer(callback, 'before', latestMessages[index++].name);
 				}
 				else {
 					fail("Failed to index new private messages, problem requesting forbidden content");
@@ -127,16 +91,19 @@
 
 	yair.model.reindexPrivateMessages = function (success, error) {
 		var callback = function () {
-			$.get('/message/inbox');
 			success();
 		};
 		new PMIndexer(function () { callback();	}, error);
 	};
 
-	function addPMDataToDatabase(response, callback, context) {
+	function addPMDataToDatabase(response, callback, reference, pageNum, direction) {
 		var messages = extractPrivateMessages(response);
 		yair.proxy(['yair', 'db', 'addAll'], [db_tables.privateMessages.name, messages], function (numAdded) {
-			callback.call(context);
+			if (reference) {
+				PMIndexer(callback, direction, reference, pageNum);
+			} else {
+				callback();
+			}
 		});
 	}
 
@@ -224,11 +191,18 @@
 			if (obj.first_message_name === obj.name) {
 				// This is the first message in the conversation, try get the correspondent from it
 				conversation.correspondent = getCorrespondentFromMsg(obj);
+				
+				// If the first message is distinguished as 'moderator' we'll flag it modmail
+				if (obj.distinguished && obj.distinguished === "moderator") {
+					conversation.modmail = true;
+				}
+				
+				if (obj.dest.startsWith("#")) {
+					conversation.modmail = true;
+				}
+
 			}
-			// If the first message is distinguished as 'moderator' we'll flag it modmail
-			if (obj.first_message_name === obj.name && obj.distinguished && obj.distinguished === "moderator") {
-				conversation.modmail = true;
-			}
+			
 		}
 		return ObjectValues(conversations);
 	};

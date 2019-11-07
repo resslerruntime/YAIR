@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.1
+* Backend change to allow YAIR to continue working on Chrome 79+
+* Fix for #22/23; Messages are marked read in the notifier when viewed.
+* Going from a long message to the inbox now returns you to the top of the page
+
 ## 0.3.0
 * add ability to export individual conversations (plaintext only exports with markdown)
 * Buttons should all now have tooltips on hover
@@ -57,5 +62,30 @@
 ## 0.1.11
 * Add (non-notifying) yair icon in New Reddit
 
-## Older Versions
-You'll have to look at the [github commit log](https://github.com/adhesivecheese/YAIR/commits/master), as I wasn't previously keeping a changelog.
+## 0.1.10
+* Removal of small amount of legacy code
+
+## 0.1.9
+* Another stab at fixing #9
+
+## 0.1.8
+* Revert Fix for #9
+
+## 0.1.7
+* Fix for #9; Updater isn't called when going directly into a PM. This  *should* fix that.
+* Add Superscript option in visual editor
+* Fix for #8; Editor content not always synchronized
+
+## 0.1.5
+* Added confirmation for resetting inbox
+* Removed Code Block from Visual editor, as the markdown it was generating was broken.
+
+## 0.1.4
+* use the correct path for Icons
+* Fix for #6
+* Modmail options will now show up whether you've opted into the new modmail or not.
+
+## 0.1.3
+* Initial Release
+
+See [github commit log](https://github.com/adhesivecheese/YAIR/commits/master) for all changes.

@@ -181,6 +181,17 @@
 			yair.view.updateBodyClass();
 			yair.model.setConversationStatus(conversation, true);
 			
+			//Mark Conversation read on Reddit
+			var browser = navigator.userAgent.toLowerCase(); //Firefox browser detection bodge
+			var postUrl = null;
+			if (browser.indexOf('firefox') > -1) { postUrl = 'https://www.reddit.com/api/read_message'; }
+			else { postUrl = '/api/read_message'; }
+			conversation.messages.forEach(function(element) {
+				if (element.author !== getUsername()){
+					var postXhr = $.post(postUrl, {id: element.name, uh: yair.model.uh});
+				}
+			});
+			
 			$('.icon-archive').on('click', yair.controller.action.bulkDelete);
 			$('.icon-markUnread').on('click', yair.controller.action.bulkMarkUnread);
 			$('.yair-conversation-input').autogrow();
@@ -253,6 +264,8 @@
 			else {
 				$row.find('.yair-last-author').addClass('yair-last-received').attr('title', 'The last message in this thread was sent by ' + conversation.last_author);
 			}
+			$row.find('.yair-message-row-content').attr('data-type', 'message');
+			$row.find('.yair-message-row-content').attr('data-author', conversation.correspondent);
 			if (yair.cfg.saved.contains(conversation.id)) {
 				$row.find('.yair-save-toggle').addClass('yair-saved');
 			}
@@ -677,14 +690,14 @@
 				yair.show = "conversation";
 				yair.showid = pathParts[3];
 			}
-			else if (pathParts[2] === "yair_modarchived") { yair.show = "modarchived"; }
-			else if (pathParts[2] === "yair_modsaved") { yair.show = "modsaved"; }
-			else if (pathParts[2] === "yair_moddrafts") { yair.show = "moddrafts"; }
-			else if (pathParts[2] === "yair_modmail") { yair.show = "modmail"; }
-			else if (pathParts[2] === "yair_saved") { yair.show = "saved"; }
-			else if (pathParts[2] === "yair_archived") { yair.show = "archived"; }
-			else if (pathParts[2] === "yair_drafts") { yair.show = "drafts"; }
-			else { yair.show = "inbox"; }
+			else if (pathParts[2] === "yair_modarchived") { window.scrollTo(0, 0); yair.show = "modarchived"; }
+			else if (pathParts[2] === "yair_modsaved") { window.scrollTo(0, 0); yair.show = "modsaved"; }
+			else if (pathParts[2] === "yair_moddrafts") { window.scrollTo(0, 0); yair.show = "moddrafts"; }
+			else if (pathParts[2] === "yair_modmail") { window.scrollTo(0, 0); yair.show = "modmail"; }
+			else if (pathParts[2] === "yair_saved") { window.scrollTo(0, 0); yair.show = "saved"; }
+			else if (pathParts[2] === "yair_archived") { window.scrollTo(0, 0);yair.show = "archived"; }
+			else if (pathParts[2] === "yair_drafts") { window.scrollTo(0, 0); yair.show = "drafts"; }
+			else { window.scrollTo(0, 0); yair.show = "inbox"; }
 			yair._get = parseQueryString(location.search);
 			if (yair._get.search) {
 				yair._get.searchObj = parseSearchQuery(yair._get.search);
