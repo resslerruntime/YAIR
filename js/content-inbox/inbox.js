@@ -264,6 +264,8 @@
 			else {
 				$row.find('.yair-last-author').addClass('yair-last-received').attr('title', 'The last message in this thread was sent by ' + conversation.last_author);
 			}
+			$row.find('.yair-message-row-content').attr('data-type', 'message');
+			$row.find('.yair-message-row-content').attr('data-author', conversation.correspondent);
 			if (yair.cfg.saved.contains(conversation.id)) {
 				$row.find('.yair-save-toggle').addClass('yair-saved');
 			}
