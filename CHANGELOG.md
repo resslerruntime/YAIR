@@ -4,7 +4,7 @@
 * Fix for #25; archive/unarchive button now shows in conversation view depending on the status of the conversation
 
 ## 0.3.1
-* Backend change to allow RIR to continue working on Chrome 79+
+* Backend change to allow YAIR to continue working on Chrome 79+
 * Fix for #22/23; Messages are marked read in the notifier when viewed.
 * Going from a long message to the inbox now returns you to the top of the page
 
