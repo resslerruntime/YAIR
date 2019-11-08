@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3.2
+* Fix for #25; archive/unarchive button now shows in conversation view depending on the status of the conversation
+
 ## 0.3.1
 * Backend change to allow RIR to continue working on Chrome 79+
 * Fix for #22/23; Messages are marked read in the notifier when viewed.

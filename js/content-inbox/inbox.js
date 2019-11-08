@@ -192,7 +192,14 @@
 				}
 			});
 			
+			console.log(conversation.id);
+			if (yair.cfg.deleted.contains(conversation.id)){
+				$('.conversation-header-right .icon-archive').hide();
+			} else {
+				$('.icon-restore').hide();
+			}
 			$('.icon-archive').on('click', yair.controller.action.bulkDelete);
+			$('.icon-restore').on('click', yair.controller.action.bulkRestore);
 			$('.icon-markUnread').on('click', yair.controller.action.bulkMarkUnread);
 			$('.yair-conversation-input').autogrow();
 			
@@ -695,7 +702,7 @@
 			else if (pathParts[2] === "yair_moddrafts") { window.scrollTo(0, 0); yair.show = "moddrafts"; }
 			else if (pathParts[2] === "yair_modmail") { window.scrollTo(0, 0); yair.show = "modmail"; }
 			else if (pathParts[2] === "yair_saved") { window.scrollTo(0, 0); yair.show = "saved"; }
-			else if (pathParts[2] === "yair_archived") { window.scrollTo(0, 0);yair.show = "archived"; }
+			else if (pathParts[2] === "yair_archived") { window.scrollTo(0, 0); yair.show = "archived"; }
 			else if (pathParts[2] === "yair_drafts") { window.scrollTo(0, 0); yair.show = "drafts"; }
 			else { window.scrollTo(0, 0); yair.show = "inbox"; }
 			yair._get = parseQueryString(location.search);
