@@ -192,7 +192,6 @@
 				}
 			});
 			
-			console.log(conversation.id);
 			if (yair.cfg.deleted.contains(conversation.id)){
 				$('.conversation-header-right .icon-archive').hide();
 			} else {
