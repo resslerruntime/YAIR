@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3.3
+* Fix Reindex function
+
 ## 0.3.2
 * Fix for #25; archive/unarchive button now shows in conversation view depending on the status of the conversation
 

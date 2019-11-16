@@ -93,7 +93,7 @@
 		var callback = function () {
 			success();
 		};
-		new PMIndexer(function () { callback();	}, error);
+		new PMIndexer(function () { callback();	}, 'after');
 	};
 
 	function addPMDataToDatabase(response, callback, reference, pageNum, direction) {
