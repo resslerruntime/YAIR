@@ -17,7 +17,7 @@ var actions = {
 	, updateNotifications: function (request, callback) {
 		$.ajax({
 			type: 'GET'
-			, url: 'https://www.reddit.com/message/unread.json?raw_json=1'
+			, url: 'https://www.reddit.com/message/unread.json?raw_json=1&limit=100'
 		, }).done(function (data) {
 			// Set the notifications and the current time
 			localStorage.setItem('notifications', JSON.stringify(data));
